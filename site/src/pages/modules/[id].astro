@@ -1,0 +1,23 @@
+---
+import { data } from '../data.js';
+
+export function getStaticPaths() {
+  return Object.keys(data).map(key => {
+    return {
+      params: { id: key },
+      props: { options: data[key] }
+    }
+  });
+}
+
+const { id } = Astro.params;
+const { options } = Astro.props;
+const option_names = Object.keys(options);
+---
+
+<div>This module is named {id}!</div>
+<div>It defines these options:</div>
+<li>
+  <!-- List the array of astronaut info -->
+  {option_names.map((key) => <div>{key}</div>)}
+</li>
