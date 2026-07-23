@@ -1,4 +1,4 @@
-name: Check generated docs and formatting
+name: Check formatting
 
 on:
   pull_request:
