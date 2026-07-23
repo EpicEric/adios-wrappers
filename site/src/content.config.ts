@@ -9,7 +9,7 @@ function moduleLoader() {
     load: async ({ store, parseData }) => {
       let modules = JSON.parse(
         execSync(
-          "nix-instantiate --eval --strict --quiet --json ../dev/_get-docs.nix",
+          "nix-instantiate --eval --strict --quiet --json ../dev/generate-docs.nix",
           { encoding: "utf-8" },
         ),
       );
