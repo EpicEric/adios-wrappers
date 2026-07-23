@@ -47,10 +47,6 @@ async function renderExample(example: any): Promise<string> {
           <dt>Type</dt>
           <dd>{option.type}</dd>
 
-          {option.mutatorType && (
-              <dt>Mutator Type</dt>
-              <dd>{option.mutatorType}</dd>
-          )}
           {option.example && (
               <dt>Example</dt>
               <dd set:html={renderExample(option.example)} />

@@ -28,12 +28,10 @@ function moduleLoader() {
         z.object({
           description: z.string().optional(),
           type: z.string(),
-          mutatorType: z.string().optional(),
           example: z.any().optional(),
           default: z.any().optional()
         }),
       ),
-      mutations: z.array(z.string()).optional(),
     }),
   } satisfies Loader;
 }
