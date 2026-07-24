@@ -67,12 +67,15 @@ function stringifyExample(example: JSONType): string {
           )}
         </dl>
       </section>
+
+      <hr />
     ))
   }
 
   <style>
     .option {
-      margin-bottom: 4rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
 
     dl {
@@ -86,6 +89,10 @@ function stringifyExample(example: JSONType): string {
     h3 {
       display: flex;
       justify-content: space-between;
+    }
+
+    hr:last-of-type {
+      display: none;
     }
   </style>
 </Global>
