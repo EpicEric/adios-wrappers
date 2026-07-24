@@ -1,9 +1,9 @@
 ---
 import { getCollection } from "astro:content";
-import { marked } from "marked";
 
 import Global from "../../layouts/Global.astro";
 import { jsonValueToNix, type JSONType } from "../../lib/nix";
+import { marked } from "../../lib/highlight";
 import Definition from "../../components/Definition.astro";
 
 export async function getStaticPaths() {
@@ -45,17 +45,20 @@ function stringifyExample(example: JSONType): string {
           <Definition
             key="Type"
             code={option.type.replaceAll(",", ", ")}
+            language="korora"
           />
           {option.example && (
             <Definition
               key="Example"
               code={stringifyExample(option.example)}
+              language="nix"
             />
           )}
           {option.default && (
             <Definition
               key="Default"
               code={jsonValueToNix(option.default)}
+              language="nix"
             />
           )}
         </dl>

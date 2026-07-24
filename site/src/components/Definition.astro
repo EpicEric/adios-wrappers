@@ -1,19 +1,21 @@
 ---
+import CodeBlock from "./CodeBlock.astro";
 import { shouldFold } from "../lib/fold";
 
 interface Props {
     key: string;
     code: string;
+    language: string;
 }
 
-const { key, code } = Astro.props;
+const { key, code, language } = Astro.props;
 
 let folded = shouldFold(code);
 ---
 
 <div class:list={folded ? ["folded"] : []}>
     <dt>{key}</dt>
-    <dd><pre><code>{code}</code></pre></dd>
+    <dd><CodeBlock code={code} language={language} /></dd>
 </div>
 
 <style>
