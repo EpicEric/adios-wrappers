@@ -37,7 +37,11 @@ function stringifyExample(example: JSONType): string {
   {
     Object.entries(module.options).map(([name, option]) => (
       <section class="option">
-        <h3>{name}</h3>
+        <h3 id={name}>
+          <span>{name}</span>
+
+          <a href={`#${name}`}>#</a>
+        </h3>
 
         <div set:html={option.description && marked.parse(option.description)} />
 
