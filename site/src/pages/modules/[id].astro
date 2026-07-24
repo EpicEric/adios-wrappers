@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { marked } from "marked";
 
 import Global from "../../layouts/Global.astro";
+import { jsonValueToNix, type JSONType } from "../../lib/nix";
 
 export async function getStaticPaths() {
   const modules = await getCollection("modules");
@@ -16,15 +17,11 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const { module } = Astro.props;
 
-async function renderExample(example: any): Promise<string> {
-  switch (typeof example) {
-    case "object":
-      return `<pre>${JSON.stringify(example, null, 2)}</pre>`;
-    case "string":
-      return `<pre>${example}</pre>`;
-
-    default:
-      return example;
+function stringifyExample(example: JSONType): string {
+  if (typeof example === "string") {
+    return example;
+  } else {
+    return jsonValueToNix(example);
   }
 }
 ---
@@ -45,15 +42,15 @@ async function renderExample(example: any): Promise<string> {
 
         <dl>
           <dt>Type</dt>
-          <dd>{option.type}</dd>
+          <dd>{option.type.replace(",", ", ")}</dd>
 
           {option.example && (
               <dt>Example</dt>
-              <dd set:html={renderExample(option.example)} />
+              <dd set:html={stringifyExample(option.example)} />
           )}
           {option.default && (
               <dt>Default</dt>
-              <dd>{option.default}</dd>
+              <dd set:html={jsonValueToNix(option.default)} />
           )}
         </dl>
       </section>
