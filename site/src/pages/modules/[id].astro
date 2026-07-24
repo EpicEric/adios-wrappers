@@ -5,6 +5,8 @@ import Global from "../../layouts/Global.astro";
 import { jsonValueToNix, type JSONType } from "../../lib/nix";
 import { marked } from "../../lib/highlight";
 import Definition from "../../components/Definition.astro";
+import InlineType from "../../components/InlineType.astro";
+import { shouldFold } from "../../lib/fold";
 
 export async function getStaticPaths() {
   const modules = await getCollection("modules");
@@ -38,7 +40,10 @@ function stringifyExample(example: JSONType): string {
     Object.entries(module.options).map(([name, option]) => (
       <section class="option">
         <h3 id={name}>
-          <span>{name}</span>
+          <span>
+            {name}
+            {shouldFold(option.type, 20) && <InlineType code={option.type} />}
+          </span>
 
           <a href={`#${name}`}>#</a>
         </h3>
