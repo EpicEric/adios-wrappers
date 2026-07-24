@@ -1,35 +1,33 @@
 ---
 import { getCollection } from "astro:content";
+import Global from "../layouts/Global.astro";
 
 let modules = await getCollection("modules");
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+<Global>
+  <Fragment slot="head">
     <title>adios-wrappers</title>
-  </head>
-  <body>
-    <h1>adios-wrappers</h1>
-    <ul>
-      {
-        modules.map((mod) => (
-          <li>
-            <a href={`./modules/${mod.id}`}>{mod.id}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </body>
+  </Fragment>
 
-  <style>
-    h1 {
-      margin-bottom: 0;
+  <h1>adios-wrappers</h1>
+  <ul>
+    {
+      modules.map((mod) => (
+        <li>
+          <a href={`./modules/${mod.id}`}>{mod.id}</a>
+        </li>
+      ))
     }
-    li {
-      margin: 5px
-    }
-  </style>
-</html>
+  </ul>
+</Global>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+  }
+
+  li {
+    margin: 5px;
+  }
+</style>

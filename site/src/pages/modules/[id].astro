@@ -1,6 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import { marked } from "marked";
+
+import Global from "../../layouts/Global.astro";
+
 export async function getStaticPaths() {
   const modules = await getCollection("modules");
 
@@ -26,14 +29,11 @@ async function renderExample(example: any): Promise<string> {
 }
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{id} - adios-wrappers</title>
-</head>
-<body>
+<Global>
+  <Fragment slot="head">
+    <title>{id} - adios-wrappers</title>
+  </Fragment>
+
   <h1>{id}</h1>
   <h2>Options</h2>
   {
@@ -87,6 +87,4 @@ async function renderExample(example: any): Promise<string> {
       margin: 0.5rem 0;
     }
   </style>
-</body>
-</html>
-
+</Global>
