@@ -105,6 +105,6 @@
     };
 
   meta = {
-    maintainers = [ "squawky" ];
+    maintainers = [ "Squawkykaka" ];
   };
 }
