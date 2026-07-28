@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, ... } @ adios:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -6,14 +6,15 @@
   };
 
   options = {
-    configFile = {
-      type = types.pathLike;
+    configFiles = {
+      type = types.listOf types.pathLike;
       description = ''
-        `config.kdl` file to be injected into the wrapped package.
+        A list of `.kdl` files that are included in the wrapped package's config.
 
         See the niri documentation for syntax and valid options:
         https://github.com/niri-wm/niri/wiki/Configuration:-Introduction
       '';
+      mergeFunc = adios.lib.merge.lists.concat;
     };
 
     package = {
@@ -25,7 +26,19 @@
 
   impl =
     { options, inputs }:
-    if options ? configFile then
+    if options ? configFiles then
+      let
+        inherit (builtins) concatStringsSep head length;
+        inherit (inputs.nixpkgs.pkgs) writeText;
+
+        configPath =
+          if length options.configFiles == 1 then
+            head options.configFiles
+          else
+            writeText "config.kdl" (
+              concatStringsSep "\n" (map (file: ''include "${file}"'') options.configFiles)
+            );
+      in
       inputs.mkWrapper {
         inherit (options) package;
         # Hack modified and gotten from https://github.com/Lassulus/wrappers/blob/main/modules/niri/module.nix
@@ -36,15 +49,15 @@
           [Service]
           ExecStart=
           ExecStart=$out/bin/niri --session
-          ExecReload=$out/bin/niri msg action load-config-file --path ${options.configFile}
+          ExecReload=$out/bin/niri msg action load-config-file --path ${configPath}
           X-ReloadIfChanged=true
           [Unit]
-          X-Reload-Triggers=${options.configFile}
+          X-Reload-Triggers=${configPath}
           EOF
           cp --remove-destination niri.service $out/share/systemd/user/niri.service
         '';
         environment = {
-          NIRI_CONFIG = options.configFile;
+          NIRI_CONFIG = configPath;
         };
       }
     else
