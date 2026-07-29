@@ -4,15 +4,41 @@ More modules and options are always welcome. However, they're expected to follow
 
 ## RFC42 and impure options
 
-Each option should aim to have an RFC42 variant and an impure path variant.
+Each config file that's used in a wrapper should have two options provided for handling it.
 
-An RFC42 option is what you're familiar with from nixos or home-manager, where the attribute set is automatically
-transformed into the correct language.
+1. An RFC42 variant (think `settings`). This is defined as an attribute set that's transformed into the relevant config
+   format (`json`, `toml`, etc) at build time.
 
-An impure path variant may be less familiar to you. All the wrappers in adios-wrappers aim to support an impure mode. If
-the user runs toString on a config file they've provided (ex: `configFile = toString ./gitconfig;`), then the path won't
-be copied to the nix store, and will instead be turned into a string which is read from at runtime. This means the user
-can run their program and have it always use the newest version.
+2. A path variant (think `configFile`). This is defined as a path(ish) value, where the file is written in the
+   program-specific format.
+
+The path variant makes it easy to use the same config file that you'd use without Nix. However, it provides another
+benefit - impurity.
+
+A `settings` option generates the config file at build time, which means on every change to the settings, the wrapper
+must be built again. A `configFile` option will work the same way by default, since when Nix sees a path as an input to
+a derivation, it copies the path to the store:
+
+```nix
+# this will be copied to the store, so changes to gitconfig will
+# only be applied when the wrapper is built again
+tree.modules.git { configFile = ./gitconfig; }
+```
+
+
+But if we use a string path instead of the Nix path type, then we're able to sidestep this logic. Nix just sees a
+string, and has no clue the string is actually a path. Since the file is only read at runtime and not build time, we're
+able to achieve impurity!
+
+```nix
+# this works if you're not using flakes, since without pure eval,
+# `toString ./path` returns the absolute path of the file as a string
+tree.modules.git { configFile = toString ./gitconfig; }
+# flakes use pure eval, where toString on a path first copies the file
+# into the store, then returns the nix store path as a string. But if
+# we use an absolute path ourselves, it still works!
+tree.modules.git { configFile = "~/Projects/your-nixos-config/wrappers/git/gitconfig"; }
+```
 
 Any new configuration options should be added with both variants, with checks that the options aren't both set at once.
 Here's an example module that adds both:
