@@ -59,4 +59,8 @@
         "$out/alacritty/alacritty.toml"
       ];
     };
+
+  meta = {
+    maintainers = [ "es-sai-fi" ];
+  };
 }

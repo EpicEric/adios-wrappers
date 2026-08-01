@@ -75,4 +75,8 @@
         JJ_CONFIG = "$out/jj-config";
       };
     };
+
+  meta = {
+    maintainers = [ "es-sai-fi" ];
+  };
 }
