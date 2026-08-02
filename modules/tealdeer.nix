@@ -58,4 +58,8 @@
         TEALDEER_CONFIG_DIR = "$out/tealdeer-config";
       };
     };
+
+  meta = {
+    maintainers = [ "es-sai-fi" ];
+  };
 }
