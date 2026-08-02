@@ -545,6 +545,21 @@
     }
   },
 
+  "lazygit": {
+    "configFile": {
+      "description": "`config.yml` file to be injected into the wrapped package. See the documentation for syntax and valid options: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md Disjoint with the `settings` option.",
+      "type": "pathLike"
+    },
+    "package": {
+      "description": "The lazygit package to be wrapped.",
+      "type": "derivation"
+    },
+    "settings": {
+      "description": "Settings to be injected into the wrapped package's `config.yml`. See the documentation for valid options: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md Disjoint with the `configFile` option.",
+      "type": "attrs"
+    }
+  },
+
   "less": {
     "configFile": {
       "description": "`lesskey` file to be injected into the wrapped package. This file doesn't just contain keybinds, but can also set flags with the `#env` section. See the documentation for valid options: https://man7.org/linux/man-pages/man1/lesskey.1.html Disjoint with the `flags` option.",
