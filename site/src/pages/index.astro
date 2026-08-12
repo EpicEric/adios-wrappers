@@ -15,7 +15,7 @@ let modules = await getCollection("modules");
     {
       modules.map((mod) => (
         <li>
-          <a href={`./modules/${mod.id}`}>{mod.id}</a>
+          <a href={`${import.meta.env.BASE_URL}/modules/${mod.id}`}>{mod.id}</a>
         </li>
       ))
     }
