@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.yml`.
 
-        See the documentation:
-        https://cli.github.com/manual/gh_config
+        See the [documentation](https://cli.github.com/manual/gh_config).
 
         Disjoint with the `configDir` option.
       '';

@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `starship.toml`.
 
-        See the documentation for valid options:
-        https://starship.rs/config/
+        See the [documentation](https://starship.rs/config/) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `starship.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://starship.rs/config/
+        See the [documentation](https://starship.rs/config/) for valid options.
 
         Disjoint with the `settings` option.
       '';

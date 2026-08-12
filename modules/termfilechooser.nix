@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's configuration file.
 
-        See the termfilechooser documentation for valid options:
-        https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser#configuration
+        See the termfilechooser [documentation](https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser#configuration) for valid options.
       '';
     };
     configFile = {
@@ -20,8 +19,7 @@
       description = ''
         Configuration file to be injected into the wrapped package.
 
-        See the termfilechooser documentation for valid options:
-        https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser#configuration
+        See the termfilechooser [documentation](https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser#configuration) for valid options.
       '';
     };
 

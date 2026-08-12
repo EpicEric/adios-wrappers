@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.conf`.
 
-        See the mangowc docs for valid options:
-        https://mangowm.github.io/docs/configuration/basics
+        See the mangowc [docs](https://mangowm.github.io/docs/configuration/basics) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.conf` file to be injected into the wrapped package.
 
-        See the mangowc docs for valid options:
-        https://mangowm.github.io/docs/configuration/basics
+        See the mangowc [docs](https://mangowm.github.io/docs/configuration/basics) for valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Script that get runs on startup, injected into the wrapped packages `autostart.sh`
 
-        See the mangowc docs for valid options:
-        https://mangowm.github.io/docs/configuration/basics#autostart
+        See the mangowc [docs](https://mangowm.github.io/docs/configuration/basics#autostart) for valid options.
 
         Disjoint with the `autostartFile` option.
       '';
@@ -45,8 +42,7 @@
       description = ''
         `autostart.sh` file to be injected into the wrapped package.
 
-        See the mangowc docs for valid options:
-        https://mangowm.github.io/docs/configuration/basics#autostart
+        See the mangowc [docs](https://mangowm.github.io/docs/configuration/basics#autostart) for valid options.
 
         Disjoint with the `autostartContents` option.
       '';

@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `btop.conf`.
 
-        See the documentation for valid options:
-        https://github.com/aristocratos/btop#configurability
+        See the [documentation](https://github.com/aristocratos/btop#configurability) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `btop.conf` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/aristocratos/btop#configurability
+        See the [documentation](https://github.com/aristocratos/btop#configurability) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';

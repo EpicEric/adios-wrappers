@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `gpg.conf`.
 
-        See the gnupg manual:
-        https://www.gnupg.org/documentation/manuals/gnupg/GPG-Options.html
+        See the gnupg [manual](https://www.gnupg.org/documentation/manuals/gnupg/GPG-Options.html).
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `gpg.conf` file to be injected into the wrapped package.
 
-        See the gnupg manual:
-        https://www.gnupg.org/documentation/manuals/gnupg/GPG-Options.html
+        See the gnupg [manual](https://www.gnupg.org/documentation/manuals/gnupg/GPG-Options.html).
 
         Disjoint with the `settings` option.
       '';

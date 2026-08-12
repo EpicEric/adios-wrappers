@@ -1,6 +1,6 @@
-<h1 align="center">Adios Wrappers</h1>
+<h1 align="center">adios-wrappers</h1>
 
-`adios-wrappers` provides an interface for wrapping programs in Nix, and a collection of preconfigured wrappers.
+adios-wrappers provides an interface for wrapping programs in Nix, and a collection of preconfigured wrappers.
 
 There are several other community projects focused around wrappers, such as
 [lassulus/wrappers](https://github.com/Lassulus/wrappers) and
@@ -82,12 +82,6 @@ and `shell.nix`.
 ## Usage
 
 See the usage instructions [here](./docs/usage.md).
-
-## Searching for options
-
-You're always free to inspect the modules themselves. However, in lieu of a fancy website, the repo also provides an
-auto-generated JSON file with information on which options each module provides. You can find the file
-[here](./docs/options.json).
 
 ## Contributing
 

@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `wiremix.toml`.
 
-        See the documentation for syntax and valid options:
-        https://github.com/tsowell/wiremix/blob/main/wiremix.toml
+        See the [documentation](https://github.com/tsowell/wiremix/blob/main/wiremix.toml) for syntax and valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `wiremix.toml` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/tsowell/wiremix/blob/main/wiremix.toml
+        See the [documentation](https://github.com/tsowell/wiremix/blob/main/wiremix.toml) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';

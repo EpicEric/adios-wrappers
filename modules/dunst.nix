@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `dunstrc`.
 
-        See the documentation for syntax and valid options:
-        https://dunst-project.org/documentation/
+        See the [documentation](https://dunst-project.org/documentation/) for syntax and valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `dunstrc` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://dunst-project.org/documentation/
+        See the [documentation](https://dunst-project.org/documentation/) for syntax and valid options.
 
         Disjoint with the `configContents` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         `*.conf` files to be injected into the wrapped package alongside the main configuration.
 
-        See the documentation for syntax and valid options:
-        https://dunst-project.org/documentation/dunst/#FILES
+        See the [documentation](https://dunst-project.org/documentation/dunst/#FILES) for syntax and valid options.
       '';
     };
 

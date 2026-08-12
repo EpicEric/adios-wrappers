@@ -13,8 +13,7 @@
 
         Note that paths passed to db_dir/temp_dir should be writable (not in the nix store)
 
-        See the documentation for valid syntax and formatting of the related flags:
-        https://hydrusnetwork.github.io/hydrus/launch_arguments.html
+        See the [documentation](https://hydrusnetwork.github.io/hydrus/launch_arguments.html) for valid syntax and formatting of the related flags.
       '';
     };
     serverFlags = {
@@ -22,13 +21,11 @@
       description = ''
         List of hydrus-server flags to pass to hydrus server on startup.
 
-        These flags only apply to hydrus-server, and are not required for basic client-only use, see:
-        https://hydrusnetwork.github.io/hydrus/youDontWantTheServer.html
+        These flags only apply to hydrus-server, and are not required for basic client-only use, see [this page](https://hydrusnetwork.github.io/hydrus/youDontWantTheServer.html).
 
         Note that paths passed to db_dir/temp_dir should be writable (not in the nix store)
 
-        See the documentation for valid syntax and formatting of the related flags:
-        https://hydrusnetwork.github.io/hydrus/launch_arguments.html
+        See the [documentation](https://hydrusnetwork.github.io/hydrus/launch_arguments.html) for valid syntax and formatting of the related flags.
       '';
     };
 

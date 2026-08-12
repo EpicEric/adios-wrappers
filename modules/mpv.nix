@@ -18,8 +18,7 @@
       description = ''
         Settings to be injected into the wrapped package's `mpv.conf`.
 
-        See the manual for valid options:
-        https://mpv.io/manual/stable/
+        See the [manual](https://mpv.io/manual/stable/) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -29,8 +28,7 @@
       description = ''
         `mpv.conf` file to be injected into the wrapped package.
 
-        See the manual for syntax and valid options:
-        https://mpv.io/manual/stable/
+        See the [manual](https://mpv.io/manual/stable/) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -41,8 +39,7 @@
       description = ''
         Keybinds to be injected into the wrapped package's `input.conf`.
 
-        See the manual for valid options:
-        https://mpv.io/manual/stable/#input-conf
+        See the [manual](https://mpv.io/manual/stable/#input-conf) for valid options.
 
         Disjoint with the `keybindsFile` option.
       '';
@@ -52,8 +49,7 @@
       description = ''
         `input.conf` file to be injected into the wrapped package.
 
-        See the manual for syntax and valid options:
-        https://mpv.io/manual/stable/#input-conf
+        See the [manual](https://mpv.io/manual/stable/#input-conf) for syntax and valid options.
 
         Disjoint with the `keybinds` option.
       '';

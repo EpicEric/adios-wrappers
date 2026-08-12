@@ -11,8 +11,7 @@
       description = ''
         Flags to be automatically appended when running ripgrep.
 
-        See the documentation of valid flags:
-        https://manpages.ubuntu.com/manpages/jammy/man1/rg.1.html#:~:text=OPTIONS
+        See the [documentation](https://manpages.ubuntu.com/manpages/jammy/man1/rg.1.html#:~:text=OPTIONS) of valid flags.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,11 +21,9 @@
       description = ''
         `ripgreprc` file, containing flags to be automatically appended when running ripgrep.
 
-        See the documentation of valid flags:
-        https://manpages.ubuntu.com/manpages/jammy/man1/rg.1.html#:~:text=OPTIONS
+        See the [documentation](https://manpages.ubuntu.com/manpages/jammy/man1/rg.1.html#:~:text=OPTIONS) of valid flags.
 
-        This file should have each flag on its own line. See the documentation of the file's format:
-        https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+        This file should have each flag on its own line. See the [documentation](https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file) of the file's format.
 
         Disjoint with the `configFile` option.
       '';

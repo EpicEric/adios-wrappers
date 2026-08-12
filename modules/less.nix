@@ -11,8 +11,7 @@
       description = ''
         Flags to be automatically appended when running less.
 
-        See the documentation for valid options:
-        https://man7.org/linux/man-pages/man1/less.1.html#:~:text=OPTIONS,-top
+        See the [documentation](https://man7.org/linux/man-pages/man1/less.1.html#:~:text=OPTIONS,-top) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -27,8 +26,7 @@
         This file doesn't just contain keybinds, but can also set flags with the
         `#env` section.
 
-        See the documentation for valid options:
-        https://man7.org/linux/man-pages/man1/lesskey.1.html
+        See the [documentation](https://man7.org/linux/man-pages/man1/lesskey.1.html) for valid options.
 
         Disjoint with the `flags` option.
       '';

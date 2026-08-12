@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `bottom.toml`.
 
-        See the bottom documentation for valid options:
-        https://bottom.pages.dev/nightly/configuration/config-file/
+        See the bottom [documentation](https://bottom.pages.dev/nightly/configuration/config-file/) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `bottom.toml` file to be injected into the wrapped package.
 
-        See the bottom documentation for valid options:
-        https://bottom.pages.dev/nightly/configuration/config-file/
+        See the bottom [documentation](https://bottom.pages.dev/nightly/configuration/config-file/) for valid options.
 
         Disjoint with the `settings` option.
       '';

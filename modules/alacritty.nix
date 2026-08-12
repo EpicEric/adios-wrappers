@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `alacritty.toml`.
 
-        See the alacritty documentation:
-        https://alacritty.org/config-alacritty.html
+        See the alacritty [documentation](https://alacritty.org/config-alacritty.html).
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `alacritty.toml` file to be injected into the wrapped package.
 
-        See the alacritty documentation:
-        https://alacritty.org/config-alacritty.html
+        See the alacritty [documentation](https://alacritty.org/config-alacritty.html).
 
         Disjoint with the `settings` option.
       '';

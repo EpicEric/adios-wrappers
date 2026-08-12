@@ -1,0 +1,102 @@
+---
+import { getCollection } from "astro:content";
+
+import Global from "../../layouts/Global.astro";
+import { jsonValueToNix, type JSONType } from "../../lib/nix";
+import { marked } from "../../lib/highlight";
+import Definition from "../../components/Definition.astro";
+
+export async function getStaticPaths() {
+  const modules = await getCollection("modules");
+
+  return modules.map((entry) => ({
+    params: { id: entry.id },
+    props: { module: entry.data },
+  }));
+}
+
+const { id } = Astro.params;
+const { module } = Astro.props;
+
+function stringifyExample(example: JSONType): string {
+  if (typeof example === "string") {
+    return example;
+  } else {
+    return jsonValueToNix(example);
+  }
+}
+---
+
+<Global>
+  <Fragment slot="head">
+    <title>{id} - adios-wrappers</title>
+  </Fragment>
+
+  <h1>{id}</h1>
+  <h2>Options</h2>
+  {
+    Object.entries(module.options).map(([name, option]) => (
+      <section class="option">
+        <h3 id={name}>
+          <span>{name}</span>
+
+          <a href={`#${name}`}>#</a>
+        </h3>
+
+        <div set:html={option.description && marked.parse(option.description)} />
+
+        <dl>
+          <Definition
+            key="Type"
+            code={option.type.replaceAll(",", ", ")}
+            language="korora"
+          />
+          {option.example && (
+            <Definition
+              key="Example"
+              code={stringifyExample(option.example)}
+              language="nix"
+            />
+          )}
+          {option.default && (
+            <Definition
+              key="Default"
+              code={jsonValueToNix(option.default)}
+              language="nix"
+            />
+          )}
+        </dl>
+      </section>
+
+      <hr />
+    ))
+  }
+
+  <style>
+    .option {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    dl {
+      margin: 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    h3 {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    h3 > a {
+      opacity: 0.6;
+    }
+
+    hr:last-of-type {
+      display: none;
+    }
+  </style>
+</Global>

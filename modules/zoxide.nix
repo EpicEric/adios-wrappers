@@ -11,8 +11,7 @@
       description = ''
         Flags to be automatically appended when creating the zoxide shell integration.
 
-        See the documentation of valid flags:
-        https://github.com/ajeetdsouza/zoxide#flags
+        See the [documentation](https://github.com/ajeetdsouza/zoxide#flags) of valid flags.
       '';
       default = [];
     };

@@ -20,7 +20,7 @@
       description = ''
         Mode to determine how the wrapped package scales images.
 
-        See the documentation for valid modes: https://man.archlinux.org/man/extra/swaybg/swaybg.1.en#OPTIONS
+        See the [documentation](https://man.archlinux.org/man/extra/swaybg/swaybg.1.en#OPTIONS) for valid modes.
       '';
     };
     outputName = {

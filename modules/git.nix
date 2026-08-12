@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `gitconfig`.
 
-        See the git documentation for valid options:
-        https://git-scm.com/docs/git-config#_variables
+        See the git [documentation](https://git-scm.com/docs/git-config#_variables) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -23,11 +22,9 @@
       description = ''
         `gitconfig` file to be injected into the wrapped package.
 
-        See the git documentation on the syntax of this file:
-        https://git-scm.com/docs/git-config#_configuration_file
+        See the git [documentation](https://git-scm.com/docs/git-config#_configuration_file) on the syntax of this file.
 
-        And the documentation on valid options:
-        https://git-scm.com/docs/git-config#_variables
+        And the [documentation](https://git-scm.com/docs/git-config#_variables) on valid options.
 
         Disjoint with the `settings` option.
       '';

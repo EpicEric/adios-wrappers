@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.jsonc`.
 
-        See the documentation for valid options:
-        https://github.com/fastfetch-cli/fastfetch/wiki/Configuration
+        See the [documentation](https://github.com/fastfetch-cli/fastfetch/wiki/Configuration) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.jsonc` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/fastfetch-cli/fastfetch/wiki/Configuration
+        See the [documentation](https://github.com/fastfetch-cli/fastfetch/wiki/Configuration) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';

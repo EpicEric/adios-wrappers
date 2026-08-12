@@ -1,0 +1,39 @@
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body {
+    max-width: 80ch;
+    width: -moz-available;
+    width: fill-available;
+}
+
+* {
+    color-scheme: light dark;
+}
+
+body {
+    line-height: 1.6;
+
+    font-size: 16px;
+    font-family: sans-serif;
+
+    color: #444444;
+    background-color: #eeeeee;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: #bbbbbb;
+        background-color: #111111;
+    }
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+    font-family: sans-serif;
+}

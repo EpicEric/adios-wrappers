@@ -10,8 +10,7 @@
       description = ''
         `autoconfig.js` files to be injected into the wrapped package.
 
-        See the Firefox documentation:
-        https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig
+        See the Firefox [documentation](https://support.mozilla.org/en-US/kb/customizing-firefox-using-autoconfig).
       '';
     };
 
@@ -41,8 +40,7 @@
         }
         ```
 
-        See the Firefox documentation:
-        https://support.mozilla.org/en-US/kb/customizing-firefox-using-policiesjson
+        See the Firefox [documentation](https://support.mozilla.org/en-US/kb/customizing-firefox-using-policiesjson).
 
         Disjoint with the `policies` option.
       '';

@@ -11,8 +11,7 @@
       description = ''
         Shell initialisation code to be injected into the wrapped package's `config.nu`.
 
-        See the nushell documentation for valid options:
-        https://www.nushell.sh/book/configuration.html
+        See the nushell [documentation](https://www.nushell.sh/book/configuration.html) for valid options.
       '';
       mergeFunc = adios.lib.merge.strings.concatLines;
     };

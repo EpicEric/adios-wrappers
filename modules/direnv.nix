@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `direnv.toml`.
 
-        See the direnv docs for valid options:
-        {manpage}`direnv.toml(1)`.
+        See the direnv [docs](https://manpages.ubuntu.com/manpages/focal/man1/direnv.toml.1.html) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `direnv.toml` file to be injected into the wrapped package.
 
-        See the direnv documentation for valid options:
-        {manpage}`direnv.toml(1)`.
+        See the direnv [documentation](https://manpages.ubuntu.com/manpages/focal/man1/direnv.toml.1.html) for valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Custom direnvrc definition to be injected into the wrapped packages `direnvrc`
 
-        The syntax is described at:
-        https://direnv.net/#the-stdlib
+        The syntax is described in the [documentation](https://direnv.net/#the-stdlib).
       '';
     };
     direnvrcFile = {
@@ -43,8 +40,7 @@
       description = ''
         `direnvrc` file to be copied into the wrapped package.
 
-        The syntax is described at:
-        https://direnv.net/#the-stdlib
+        The syntax is described in the [documentation](https://direnv.net/#the-stdlib).
       '';
     };
 

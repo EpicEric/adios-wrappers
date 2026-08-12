@@ -11,7 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config` file.
 
-        See the documentation for valid options: https://man.archlinux.org/man/swayidle.1
+        See the [documentation](https://man.archlinux.org/man/swayidle.1) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -21,7 +21,7 @@
       description = ''
         `config` file to be injected into the wrapped package.
 
-        See the documentation for valid options: https://man.archlinux.org/man/swayidle.1
+        See the [documentation](https://man.archlinux.org/man/swayidle.1) for valid options.
 
         Disjoint with the `configContents` option.
       '';

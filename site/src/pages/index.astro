@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Global from "../layouts/Global.astro";
+
+let modules = await getCollection("modules");
+---
+
+<Global>
+  <Fragment slot="head">
+    <title>adios-wrappers</title>
+  </Fragment>
+
+  <h1>adios-wrappers</h1>
+  <ul>
+    {
+      modules.map((mod) => (
+        <li>
+          <a href={`${import.meta.env.BASE_URL}/modules/${mod.id}`}>{mod.id}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Global>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+  }
+
+  li {
+    margin: 5px;
+  }
+</style>

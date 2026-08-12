@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.toml`.
 
-        See the jujutsu documentation for valid options:
-        https://docs.jj-vcs.dev/latest/config/
+        See the jujutsu [documentation](https://docs.jj-vcs.dev/latest/config/) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the jujutsu documentation for valid options:
-        https://docs.jj-vcs.dev/latest/config/
+        See the jujutsu [documentation](https://docs.jj-vcs.dev/latest/config/) for valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Packages to be automatically added to jujutsu's path. Can be used to enable 3-pane diff editing by using Meld or diffedit3.
 
-        See the jujutsu documentation on how to achieve this:
-        https://docs.jj-vcs.dev/latest/config/#experimental-3-pane-diff-editing
+        See the jujutsu [documentation](https://docs.jj-vcs.dev/latest/config/#experimental-3-pane-diff-editing) on how to achieve this.
       '';
     };
     package = {
