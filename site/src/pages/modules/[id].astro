@@ -1,6 +1,11 @@
 ---
 import { getCollection } from "astro:content";
-import { marked } from "marked";
+
+import Global from "../../layouts/Global.astro";
+import { jsonValueToNix, type JSONType } from "../../lib/nix";
+import { marked } from "../../lib/highlight";
+import Definition from "../../components/Definition.astro";
+
 export async function getStaticPaths() {
   const modules = await getCollection("modules");
 
@@ -13,80 +18,85 @@ export async function getStaticPaths() {
 const { id } = Astro.params;
 const { module } = Astro.props;
 
-async function renderExample(example: any): Promise<string> {
-  switch (typeof example) {
-    case "object":
-      return `<pre>${JSON.stringify(example, null, 2)}</pre>`;
-    case "string":
-      return `<pre>${example}</pre>`;
-
-    default:
-      return example;
+function stringifyExample(example: JSONType): string {
+  if (typeof example === "string") {
+    return example;
+  } else {
+    return jsonValueToNix(example);
   }
 }
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{id} - adios-wrappers</title>
-</head>
-<body>
+<Global>
+  <Fragment slot="head">
+    <title>{id} - adios-wrappers</title>
+  </Fragment>
+
   <h1>{id}</h1>
   <h2>Options</h2>
   {
     Object.entries(module.options).map(([name, option]) => (
       <section class="option">
-        <h3>{name}</h3>
+        <h3 id={name}>
+          <span>{name}</span>
+
+          <a href={`#${name}`}>#</a>
+        </h3>
 
         <div set:html={option.description && marked.parse(option.description)} />
 
         <dl>
-          <dt>Type</dt>
-          <dd>{option.type}</dd>
-
+          <Definition
+            key="Type"
+            code={option.type.replaceAll(",", ", ")}
+            language="korora"
+          />
           {option.example && (
-              <dt>Example</dt>
-              <dd set:html={renderExample(option.example)} />
+            <Definition
+              key="Example"
+              code={stringifyExample(option.example)}
+              language="nix"
+            />
           )}
           {option.default && (
-              <dt>Default</dt>
-              <dd>{option.default}</dd>
+            <Definition
+              key="Default"
+              code={jsonValueToNix(option.default)}
+              language="nix"
+            />
           )}
         </dl>
       </section>
+
+      <hr />
     ))
   }
 
   <style>
     .option {
+      margin-top: 2rem;
       margin-bottom: 2rem;
-    }
-
-    h4 {
-      margin: 0;
-
     }
 
     dl {
       margin: 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    dt {
-      font-weight: 600;
-      font-size: medium;
+    h3 {
+      display: flex;
+      justify-content: space-between;
     }
 
-    dd {
-      margin: 0 0 1rem 20px;
+    h3 > a {
+      opacity: 0.6;
     }
 
-    pre {
-      margin: 0.5rem 0;
+    hr:last-of-type {
+      display: none;
     }
   </style>
-</body>
-</html>
-
+</Global>

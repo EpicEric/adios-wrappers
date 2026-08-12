@@ -1,0 +1,100 @@
+code {
+    font-family: monospace;
+}
+
+pre:has(code) {
+    border-radius: 16px;
+    padding: 16px;
+}
+
+pre {
+    overflow-x: auto;
+}
+
+pre:has(code), :not(pre) code, .code {
+    background-color: #fcfcfc;
+    color: #5c6166;
+}
+
+/* colors from: https://github.com/dempfi/ayu/blob/master/ayu-light.sublime-color-scheme */
+.hljs-attr {
+    color: #f2ae49;
+}
+
+.hljs-operator {
+    color: #ed9366;
+}
+
+.hljs-string, .hljs-symbol {
+    color: #86b300;
+}
+
+.hljs-comment {
+    color: #787b8099;
+    font-style: italic;
+}
+
+.hljs-subst, .hljs-keyword {
+    color: #fa8d3e;
+}
+
+.hljs-params {
+    color: #a37acc;
+}
+
+.hljs-literal, .hljs-number {
+    color: #ffaa33;
+}
+
+.hljs-punctuation {
+    color: #5c6166;
+}
+
+.hljs-built_in {
+    color: #f07171;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* colors from: https://github.com/dempfi/ayu/blob/master/ayu-dark.sublime-color-scheme */
+    pre:has(code), :not(pre) code, .code {
+        background-color: #10141c;
+        color: #bfbdb6;
+    }
+
+    .hljs-attr {
+        color: #ffb454;
+    }
+
+    .hljs-operator {
+        color: #f29668;
+    }
+
+    .hljs-string, .hljs-symbol {
+        color: #aad94c;
+    }
+
+    .hljs-comment {
+        color: #acb6bf8c;
+        font-style: italic;
+    }
+
+    .hljs-subst, .hljs-keyword {
+        color: #ff8f40;
+    }
+
+    .hljs-params {
+        color: #d2a6ff;
+    }
+
+    .hljs-literal, .hljs-number {
+        color: #e6b450;
+    }
+
+    .hljs-punctuation {
+        color: #bfbdb6;
+    }
+
+    .hljs-built_in {
+        color: #f07178;
+    }
+}
