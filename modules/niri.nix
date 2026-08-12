@@ -11,8 +11,7 @@
       description = ''
         A list of `.kdl` files that are included in the wrapped package's config.
 
-        See the niri documentation for syntax and valid options:
-        https://github.com/niri-wm/niri/wiki/Configuration:-Introduction
+        See the niri [documentation](https://github.com/niri-wm/niri/wiki/Configuration:-Introduction) for syntax and valid options.
       '';
       mergeFunc = adios.lib.merge.lists.concat;
     };

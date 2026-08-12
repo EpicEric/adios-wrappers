@@ -11,8 +11,7 @@
       description = ''
         Lua configuration to be injected into the wrapped package's `wezterm.lua`.
 
-        See the documentation for valid options:
-        https://wezterm.org/config/lua/general.html
+        See the [documentation](https://wezterm.org/config/lua/general.html) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `wezterm.lua` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://wezterm.org/config/lua/general.html
+        See the [documentation](https://wezterm.org/config/lua/general.html) for valid options.
 
         Disjoint with the `configContents` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Files containing .lua configuration modules to be injected into the wrapped package.
 
-        See the documentation to learn how to refer to modules in your wezterm.lua file:
-        https://wezterm.org/config/files.html?h=modules#making-your-own-lua-modules
+        See the [documentation](https://wezterm.org/config/files.html?h=modules#making-your-own-lua-modules) to learn how to refer to modules in your wezterm.lua file.
       '';
     };
 

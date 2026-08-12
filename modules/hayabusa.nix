@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.toml`.
 
-        See the documentation for syntax and valid options:
-        https://github.com/Notarin/hayabusa/blob/main/CONFIGURATION.md
+        See the [documentation](https://github.com/Notarin/hayabusa/blob/main/CONFIGURATION.md) for syntax and valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/Notarin/hayabusa/blob/main/CONFIGURATION.md
+        See the [documentation](https://github.com/Notarin/hayabusa/blob/main/CONFIGURATION.md) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,8 @@
       description = ''
         Lua code to be injected into the wrapped package's `config.lua`.
 
-        See the default lua file for a general idea of expected contents and formatting.  
-        https://github.com/Notarin/hayabusa/blob/main/src/config/default.lua
+        See the [default lua file](https://github.com/Notarin/hayabusa/blob/main/src/config/default.lua) for a general
+        idea of expected contents and formatting.
 
         Disjoint with the `luaFile` option.
       '';
@@ -45,8 +43,8 @@
       description = ''
         `config.lua` file to be injected into the wrapped package.
 
-        See the default lua file for a general idea of expected contents and formatting.  
-        https://github.com/Notarin/hayabusa/blob/main/src/config/default.lua
+        See the [default lua file](https://github.com/Notarin/hayabusa/blob/main/src/config/default.lua) for a general
+        idea of expected contents and formatting.
 
         Disjoint with the `luaContents` option.
       '';

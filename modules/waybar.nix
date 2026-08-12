@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.jsonc`.
 
-        See the documentation for valid options:
-        https://github.com/Alexays/Waybar/wiki/Configuration
+        See the [documentation](https://github.com/Alexays/Waybar/wiki/Configuration) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.jsonc` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/Alexays/Waybar/wiki/Configuration
+        See the [documentation](https://github.com/Alexays/Waybar/wiki/Configuration) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         CSS to be injected into the wrapped package's `style.css`.
 
-        See the documentation for writing waybar themes:
-        https://github.com/Alexays/Waybar/wiki/Styling
+        See the [documentation](https://github.com/Alexays/Waybar/wiki/Styling) for writing waybar themes.
 
         Disjoint with the `cssFile` option.
       '';
@@ -45,8 +42,7 @@
       description = ''
         `style.css` file to be injected into the wrapped package.
 
-        See the documentation for writing waybar themes:
-        https://github.com/Alexays/Waybar/wiki/Styling
+        See the [documentation](https://github.com/Alexays/Waybar/wiki/Styling) for writing waybar themes.
 
         Live reloading of themes can be accomplished with an impure path and options.interactiveEnv set to true.
 
@@ -59,8 +55,7 @@
       description = ''
         Sets GTK_DEBUG=interactive to launch the wrapped package with the GTK CSS Inspector.
 
-        See the documentation for use of the inspection tool:
-        https://developer.gnome.org/documentation/tools/inspector.html
+        See the [documentation](https://developer.gnome.org/documentation/tools/inspector.html) for use of the inspection tool.
 
         Can be used with an impure path in options.cssFile to enable live theme reloading.
       '';

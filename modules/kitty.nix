@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `kitty.conf`.
 
-        See the kitty documentation:
-        https://sw.kovidgoyal.net/kitty/conf.html
+        See the kitty [documentation](https://sw.kovidgoyal.net/kitty/conf.html).
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `kitty.conf` file to be injected into the wrapped package.
 
-        See the kitty documentation:
-        https://sw.kovidgoyal.net/kitty/conf.html
+        See the kitty [documentation](https://sw.kovidgoyal.net/kitty/conf.html).
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Theme name from `pkgs.kitty-themes` to be used.
 
-        Each of the files in this folder constitute a valid theme:
-        https://github.com/kovidgoyal/kitty-themes/tree/master/themes
+        Each of the files in [this folder](https://github.com/kovidgoyal/kitty-themes/tree/master/themes) constitute a valid theme.
       '';
       example = "Catppuccin-Mocha";
     };

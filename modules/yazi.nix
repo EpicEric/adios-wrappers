@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `yazi.toml`.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/yazi
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/yazi) for valid options.
 
         Disjoint with the `settingsFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `yazi.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/yazi
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/yazi) for valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         Keybinds injected into the wrapped package's `keymap.toml`.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/keymap
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/keymap) for valid options.
 
         Disjoint with the `keymapFile` option.
       '';
@@ -45,8 +42,7 @@
       description = ''
         `keymap.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/keymap
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/keymap) for valid options.
 
         Disjoint with the `keymap` option.
       '';
@@ -57,8 +53,7 @@
       description = ''
         Theme settings to be injected into the wrapped package's `theme.toml`.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/theme/
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/theme/) for valid options.
 
         Disjoint with the `themeFile` option.
       '';
@@ -68,8 +63,7 @@
       description = ''
         `theme.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://yazi-rs.github.io/docs/configuration/theme/
+        See the [documentation](https://yazi-rs.github.io/docs/configuration/theme/) for valid options.
 
         Disjoint with the `theme` option.
       '';
@@ -80,8 +74,7 @@
       description = ''
         Lua script to be injected into the wrapped package's `init.lua`.
 
-        See the documentation on how to use the Yazi API:
-        https://yazi-rs.github.io/docs/plugins/overview
+        See the [documentation](https://yazi-rs.github.io/docs/plugins/overview) on how to use the Yazi API.
 
         Disjoint with the `initLuaFile` option.
       '';
@@ -91,8 +84,7 @@
       description = ''
         `init.lua` file to be injected into the wrapped package.
 
-        See the documentation on how to use the Yazi API:
-        https://yazi-rs.github.io/docs/plugins/overview
+        See the [documentation](https://yazi-rs.github.io/docs/plugins/overview) on how to use the Yazi API.
 
         Disjoint with the `initLua` option.
       '';
@@ -118,12 +110,10 @@
       description = ''
         Packages to be automatically added as Yazi dependencies.
 
-        This defaults to the optionalDeps of the Yazi package in nixpkgs, set here:
-        https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/ya/yazi/package.nix#L8
+        This defaults to the optionalDeps of the Yazi package in nixpkgs, set [here](https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/ya/yazi/package.nix#L8).
 
         The dependency `File` is added regardless of the content of this option, because it's non-optional.
-        See the Yazi docs on this topic:
-        https://yazi-rs.github.io/docs/installation
+        See the Yazi [docs](https://yazi-rs.github.io/docs/installation) on this topic.
       '';
     };
     plugins = {

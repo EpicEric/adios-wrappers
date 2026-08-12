@@ -54,8 +54,7 @@
       description = ''
         Options to be enabled or disabled in the wrapped package's `.zshrc` file.
 
-        See the documentation for valid options:
-        https://zsh.sourceforge.io/Doc/Release/Options.html
+        See the [documentation](https://zsh.sourceforge.io/Doc/Release/Options.html) for valid options.
       '';
       example = {
         appendhistory = true;
@@ -93,8 +92,7 @@
         can either be a string defining the command to be aliased, or a struct
         where you can define the command and if the alias should be global.
 
-        See the documentation for valid options:
-        https://zsh.sourceforge.io/Intro/intro_8.html
+        See the [documentation](https://zsh.sourceforge.io/Intro/intro_8.html) for valid options.
       '';
       example = {
         ls = "ls --color";

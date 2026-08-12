@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's 'config.toml'.
 
-        See the default configuration for valid options:
-        https://github.com/ayn2op/discordo/blob/main/internal/config/config.toml
+        See the [default configuration](https://github.com/ayn2op/discordo/blob/main/internal/config/config.toml) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the default configuration for valid options:
-        https://github.com/ayn2op/discordo/blob/main/internal/config/config.toml
+        See the [default configuration](https://github.com/ayn2op/discordo/blob/main/internal/config/config.toml) for valid options.
 
         Disjoint with the `settings` option.
       '';

@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.toml`.
 
-        See the Satty documentation for valid options:
-        https://github.com/Satty-org/Satty#configuration-file
+        See the Satty [documentation](https://github.com/Satty-org/Satty#configuration-file) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the Satty documentation for syntax and valid options:
-        https://github.com/Satty-org/Satty#configuration-file
+        See the Satty [documentation](https://github.com/Satty-org/Satty#configuration-file) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';

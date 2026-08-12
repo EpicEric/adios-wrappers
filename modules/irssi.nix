@@ -11,8 +11,7 @@
       description = ''
         The config to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://irssi.org/documentation/settings/
+        See the [documentation](https://irssi.org/documentation/settings/) for valid options.
 
         Disjoint with the `configDir` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         The path of `.irssi` to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://irssi.org/documentation/settings/
+        See the [documentation](https://irssi.org/documentation/settings/) for valid options.
 
         Disjoint with the `config` option.
       '';

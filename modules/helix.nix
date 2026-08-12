@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.toml`.
 
-        See the documentation:
-        https://docs.helix-editor.com/configuration.html
+        See the [documentation](https://docs.helix-editor.com/configuration.html).
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://docs.helix-editor.com/configuration.html
+        See the [documentation](https://docs.helix-editor.com/configuration.html) for valid options.
 
         Disjoint with the `config` option.
       '';
@@ -34,8 +32,7 @@
       description = ''
         An attrset of custom themes, mapping the name of a theme to its settings.
 
-        See the documentation for valid options:
-        https://docs.helix-editor.com/themes.html
+        See the [documentation](https://docs.helix-editor.com/themes.html) for valid options.
 
         Disjoint with the `themeDir` option.
       '';
@@ -56,8 +53,7 @@
       description = ''
         Language config to be injected into the wrapped package's `languages.toml`.
 
-        See the documentation for valid options:
-        https://docs.helix-editor.com/languages.html
+        See the [documentation](https://docs.helix-editor.com/languages.html) for valid options.
 
         Disjoint with the `languagesFile` option.
       '';
@@ -67,8 +63,7 @@
       description = ''
         `languages.toml` file to be injected into the wrapped package.
 
-        See the documentation on valid options:
-        https://docs.helix-editor.com/languages.html
+        See the [documentation](https://docs.helix-editor.com/languages.html) on valid options.
 
         Disjoint with the `languages` option.
       '';

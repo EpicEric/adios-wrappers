@@ -57,8 +57,7 @@ Here's an example module that adds both:
       description = ''
         Settings to be injected into the wrapped package's `foo.toml`.
 
-        See the documentation for valid options:
-        https://fake.website.com
+        See the [documentation](https://fake.website.com) on valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -68,8 +67,7 @@ Here's an example module that adds both:
       description = ''
         `foo.toml` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://fake.website.com
+        See the [documentation](https://fake.website.com) on valid options:
 
         Disjoint with the `settings` option.
       '';

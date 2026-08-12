@@ -14,8 +14,7 @@
       description = ''
         Config to be injected into the wrapped package's `config.kdl`.
 
-        See the documentation for valid options:
-        https://zellij.dev/documentation/configuration.html
+        See the [documentation](https://zellij.dev/documentation/configuration.html) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -25,8 +24,7 @@
       description = ''
         `config.kdl` file to be injected into the wrapped package.
 
-        See the documentation for valid options:
-        https://zellij.dev/documentation/configuration.html
+        See the [documentation](https://zellij.dev/documentation/configuration.html) for valid options.
 
         Disjoint with the `configContents` option.
       '';
@@ -37,8 +35,7 @@
       description = ''
         Custom layouts to be injected into the wrapped package.
 
-        See the documentation to learn how to make custom layouts and use them:
-        https://zellij.dev/documentation/layouts.html
+        See the [documentation](https://zellij.dev/documentation/layouts.html) to learn how to make custom layouts and use them.
 
         Disjoint with the `layoutsFiles` option.
       '';
@@ -48,8 +45,7 @@
       description = ''
         Files containing custom layouts to be injected into the wrapped package.
 
-        See the documentation to learn how to make custom layouts and use them:
-        https://zellij.dev/documentation/layouts.html
+        See the [documentation](https://zellij.dev/documentation/layouts.html) to learn how to make custom layouts and use them.
 
         Disjoint with the `layoutsContents` option.
       '';
@@ -60,8 +56,7 @@
       description = ''
         Attribute set of themes to be injected into the wrapped package.
 
-        See the zellij documentation to learn how to make custom themes and use them:
-        https://zellij.dev/documentation/themes.html
+        See the zellij [documentation](https://zellij.dev/documentation/themes.html) to learn how to make custom themes and use them.
 
         Each attribute name is used as the theme name. The corresponding value must be
         a folder or derivation whose top level contains a file named `<name>.kdl`.

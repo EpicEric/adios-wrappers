@@ -13,7 +13,7 @@
 
         This folder should contain a `shell.qml` file.
 
-        See the [Quickshell](https://quickshell.org/docs/v0.3.0) docs for more information
+        See the Quickshell [docs](https://quickshell.org/docs/v0.3.0) for more information.
       '';
     };
     package = {

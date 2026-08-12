@@ -19,7 +19,7 @@
       description = ''
         Settings to be injected into the wrapped package's `theme.yml`.
 
-        See `https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md` for valid options
+        See the [documentation](https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md) for valid options.
 
         Disjoint with the `themeFile` option.
       '';
@@ -29,7 +29,7 @@
       description = ''
         `theme.yml` file to be injected into the wrapped package.
 
-        See `https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md` for valid options
+        See the [documentation](https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md) for valid options.
 
         Disjoint with the `theme` option.
       '';

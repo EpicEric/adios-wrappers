@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `fuzzel.ini`.
 
-        See the documentation for valid options:
-        https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.ini.5.scd
+        See the [documentation](https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.ini.5.scd) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `fuzzel.ini` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.ini.5.scd
+        See the [documentation](https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.ini.5.scd) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';
@@ -43,8 +41,7 @@
       description = ''
         Dmenu related flags to pass to fuzzel when using `settings`/`configFile`
 
-        See the documentation for valid syntax and formatting of the related flags:
-        https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.1.scd
+        See the [documentation](https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.1.scd) for valid syntax and formatting of the related flags.
 
         Requires that either `settings`/`configFile` be set.
       '';
@@ -62,8 +59,7 @@
       description = ''
         Logging related flags to pass to fuzzel when using `settings`/`configFile`
 
-        See the documentation for valid syntax and formatting of the related flags:
-        https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.1.scd
+        See the [documentation](https://codeberg.org/dnkl/fuzzel/src/branch/master/doc/fuzzel.1.scd) for valid syntax and formatting of the related flags.
 
         Requires that either `settings`/`configFile` be set.
       '';

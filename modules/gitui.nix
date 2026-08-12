@@ -27,8 +27,7 @@
 
         An action that does not set either `char` or `mod` disables the keybind.
 
-        For more information on how `key_bindings.ron` is formatted and used:
-        https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md
+        For more information on how `key_bindings.ron` is formatted and used, see the [documentation](https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md).
 
         Disjoint with the `keybindsFile` option.
       '';
@@ -48,8 +47,7 @@
       description = ''
         `key_bindings.ron` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-config
+        See the [documentation](https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-config) for syntax and valid options.
 
         Disjoint with the `keybinds` option.
       '';
@@ -67,8 +65,7 @@
         `key` is a valid [Gitui KeySymbol](https://github.com/gitui-org/gitui/blob/master/src/keys/symbols.rs),
         and `char` is a valid character string.
 
-        For more information on how `key_bindings.ron` is formatted and used:
-        https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-symbols
+        For more information on how `key_bindings.ron` is formatted and used, see the [documentation](https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-symbols).
 
         Disjoint with the `symbolsFile` option.
       '';
@@ -81,8 +78,7 @@
       description = ''
         `key_symbols.ron` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-symbols
+        See the [documentation](https://github.com/gitui-org/gitui/blob/master/KEY_CONFIG.md#key-symbols) for syntax and valid options.
 
         Disjoint with the `symbols` option.
       '';
@@ -100,8 +96,7 @@
         `element` is a valid [Gitui style element](https://github.com/gitui-org/gitui/blob/master/src/ui/style.rs#L305)
         and `color` is a valid hex string ("#FFFFFF") or [Ratatui color](https://docs.rs/crossterm/latest/crossterm/event/struct.KeyModifiers.html)
 
-        For more information on how `key_bindings.ron` is formatted and used:
-        https://github.com/gitui-org/gitui/blob/master/THEMES.md
+        For more information on how `key_bindings.ron` is formatted and used, see the [documentation](https://github.com/gitui-org/gitui/blob/master/THEMES.md).
 
         Disjoint with the `themeFile` option.
       '';
@@ -115,8 +110,7 @@
       description = ''
         `theme.ron` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/gitui-org/gitui/blob/master/THEMES.md
+        See the [documentation](https://github.com/gitui-org/gitui/blob/master/THEMES.md) for syntax and valid options.
 
         Disjoint with the `theme` option.
       '';
@@ -127,8 +121,8 @@
       description = ''
         Files containing .thTheme syntax files that can be loaded by `theme.ron`
 
-        See the documentation for loading `.thTheme` files in `theme.ron`:
-        https://github.com/gitui-org/gitui/blob/master/THEMES.md
+        See the [documentation](https://github.com/gitui-org/gitui/blob/master/THEMES.md) for loading `.thTheme` files
+        in `theme.ron`.
       '';
     };
 

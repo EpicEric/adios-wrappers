@@ -11,8 +11,7 @@
       description = ''
         Settings to be injected into the wrapped package's `config.toml`.
 
-        See the documentation for valid options:
-        https://github.com/pythops/bluetui#config
+        See the [documentation](https://github.com/pythops/bluetui#config) for valid options.
 
         Disjoint with the `configFile` option.
       '';
@@ -22,8 +21,7 @@
       description = ''
         `config.toml` file to be injected into the wrapped package.
 
-        See the documentation for syntax and valid options:
-        https://github.com/pythops/bluetui#config
+        See the [documentation](https://github.com/pythops/bluetui#config) for syntax and valid options.
 
         Disjoint with the `settings` option.
       '';
