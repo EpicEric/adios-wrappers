@@ -75,7 +75,6 @@
   impl =
     { options, inputs }:
     let
-      inherit (builtins) head;
       inherit (inputs.nixpkgs.lib) optionals;
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.ini {};
@@ -126,13 +125,6 @@
     inputs.mkWrapper {
       inherit (options) package;
       inherit flags;
-      preWrap =
-        if options ? settings || options ? configFile then
-          ''
-            exec $out/bin/fuzzel --check-config ${head configFlag}
-          ''
-        else
-          "";
     };
 
   meta = {
