@@ -81,7 +81,11 @@ and `shell.nix`.
 
 ## Usage
 
-See the usage instructions [here](./docs/usage.md).
+Once you have adios-wrappers as an input, you'll need to start using it to define your wrappers. A guide on this is provided
+[here](./docs/guide.md).
+
+Also see the [website](https://llakala.github.io/adios-wrappers), which works like `search.nixos.org` and lets you view
+which options a module provides.
 
 ## Contributing
 
