@@ -47,7 +47,7 @@
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) attrNames listToAttrs;
-      optionalAttrs = cond: attrs: if cond then attrs else {};
+      inherit (inputs.nixpkgs.lib) optionalAttrs;
     in
     assert !(options ? configContents && options ? configFile);
     inputs.mkWrapper {

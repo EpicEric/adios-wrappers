@@ -154,9 +154,8 @@
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
-      inherit (inputs.nixpkgs.lib) makeBinPath;
+      inherit (inputs.nixpkgs.lib) makeBinPath optionalString;
       inherit (builtins) concatStringsSep attrNames;
-      optionalString = cond: string: if cond then string else "";
       # Apply some function to each element in the list, then concat all the
       # elements together with newlines in between
       mapAndConcat = func: elems: (concatStringsSep "\n" (map func elems)) + "\n";

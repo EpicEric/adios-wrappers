@@ -64,7 +64,7 @@
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) attrNames baseNameOf listToAttrs unsafeDiscardStringContext;
-      optionalAttrs = cond: attrs: if cond then attrs else {};
+      inherit (inputs.nixpkgs.lib) optionalAttrs;
     in
     assert !(options ? cssContents && options ? cssFile);
     inputs.mkWrapper {

@@ -147,9 +147,8 @@
     { options, inputs }:
     let
       inherit (inputs.nixpkgs) pkgs;
-      inherit (inputs.nixpkgs.lib) makeBinPath;
+      inherit (inputs.nixpkgs.lib) makeBinPath optionalAttrs;
       inherit (builtins) listToAttrs attrNames;
-      optionalAttrs = cond: attrs: if cond then attrs else {};
       generator = pkgs.formats.toml {};
     in
     assert !(options ? settings && options ? settingsFile);
