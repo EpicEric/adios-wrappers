@@ -96,8 +96,12 @@
             null;
 
         "$out/kitty/current-theme.conf" =
-          options.themeFile
-            or "${inputs.nixpkgs.pkgs.kitty-themes}/share/kitty-themes/themes/${options.theme}.conf";
+          if options ? themeFile then
+            options.themeFile
+          else if options ? theme then
+            "${inputs.nixpkgs.pkgs.kitty-themes}/share/kitty-themes/themes/${options.theme}.conf"
+          else
+            null;
       };
       environment = {
         KITTY_CONFIG_DIRECTORY = "$out/kitty";
