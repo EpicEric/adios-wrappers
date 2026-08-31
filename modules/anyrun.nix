@@ -12,10 +12,11 @@
 
         See the [config example](https://github.com/anyrun-org/anyrun/blob/master/examples/config.ron) for valid anyrun options and the [plugins directory](https://github.com/anyrun-org/anyrun/tree/master/plugins) for official plugins.
       '';
-      example = {
-        config.ron = ./config.ron;
-        shell.ron = ./shell.ron;
-      };
+      example = ''
+        {
+          config.ron = ./config.ron;
+          shell.ron = ./shell.ron;
+        }'';
     };
 
     cssContents = {
@@ -46,10 +47,11 @@
 
         Must point to a plugin's shared object file (`.so`).
       '';
-      example = [
-        "\${inputs.nixpkgs.pkgs.anyrun}/lib/libapplications.so"
-        ./my-plugins/libshell.so
-      ];
+      example = ''
+        [
+          "''${inputs.nixpkgs.pkgs.anyrun}/lib/libapplications.so"
+          ./my-plugins/libshell.so
+        ]'';
     };
 
     package = {
