@@ -18,7 +18,7 @@ let modules = await getCollection("modules");
   <ul>
     {
       modules.map((mod) => (
-        <li class="module">
+        <li>
           <a href={`${import.meta.env.BASE_URL}/modules/${mod.id}`}>{mod.id}</a>
         </li>
       ))
@@ -32,10 +32,13 @@ let modules = await getCollection("modules");
   }
 
   ul {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    column-count: 3;
+    column-gap: 5px;
     padding: 0;
     list-style: none;
-    gap: 5px;
+  }
+
+  ul li {
+    break-inside: avoid;
   }
 </style>
