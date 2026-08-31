@@ -101,9 +101,10 @@
         )
       );
 
-      environment = {
-        XDG_CONFIG_HOME = "$out";
-      };
+      flags = [
+        "--config-dir"
+        "$out/anyrun"
+      ];
     };
 
   meta = {
