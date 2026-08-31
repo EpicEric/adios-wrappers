@@ -6,6 +6,9 @@ import { jsonValueToNix, type JSONType } from "../../lib/nix";
 import { marked } from "../../lib/highlight";
 import Definition from "../../components/Definition.astro";
 
+import fs from 'fs';
+import path from 'path';
+
 export async function getStaticPaths() {
   const modules = await getCollection("modules");
 
@@ -25,6 +28,9 @@ function stringifyExample(example: JSONType): string {
     return jsonValueToNix(example);
   }
 }
+
+let res = await fetch(`https://raw.githubusercontent.com/llakala/adios-wrappers/refs/heads/main/modules/${id}.nix`)
+let exists = res.ok;
 ---
 
 <Global>
@@ -37,7 +43,7 @@ function stringifyExample(example: JSONType): string {
   <h1 class="id">
     {id}
 
-    <a href={`https://github.com/llakala/adios-wrappers/tree/main/modules/${id}.nix`}>Source file</a>
+    <a href={`https://github.com/llakala/adios-wrappers/tree/main/modules/${id}${exists ? '' : '/default'}.nix`}>Source file</a>
   </h1>
 
   <h2>Options</h2> 
