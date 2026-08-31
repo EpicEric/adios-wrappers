@@ -11,6 +11,10 @@ let modules = await getCollection("modules");
   </Fragment>
 
   <h1>adios-wrappers</h1>
+  <a href="https://github.com/llakala/adios-wrappers">GitHub repository</a>
+
+  <h2>Modules</h2>
+
   <ul>
     {
       modules.map((mod) => (
@@ -27,7 +31,14 @@ let modules = await getCollection("modules");
     margin-bottom: 0;
   }
 
-  li {
-    margin: 5px;
+  ul {
+    column-count: 3;
+    column-gap: 5px;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul li {
+    break-inside: avoid;
   }
 </style>
