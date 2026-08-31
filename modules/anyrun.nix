@@ -13,8 +13,8 @@
         See the [config example](https://github.com/anyrun-org/anyrun/blob/master/examples/config.ron) for valid anyrun options and the [plugins directory](https://github.com/anyrun-org/anyrun/tree/master/plugins) for official plugins.
       '';
       example = {
-        "config.ron" = ./config.ron;
-        "shell.ron" = "/home/user/shell.ron";
+        config.ron = ./config.ron;
+        shell.ron = ./shell.ron;
       };
     };
 
@@ -48,7 +48,7 @@
       '';
       example = [
         "\${inputs.nixpkgs.pkgs.anyrun}/lib/libapplications.so"
-        "/home/user/anyrun-plugins/libshell.so"
+        ./my-plugins/libshell.so
       ];
     };
 
