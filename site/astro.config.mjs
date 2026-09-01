@@ -5,4 +5,5 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://llakala.github.io',
   base: '/adios-wrappers',
+  trailingSlash: 'always',
 });
