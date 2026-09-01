@@ -38,7 +38,7 @@ let exists = res.ok;
     <title>{id} - adios-wrappers</title>
   </Fragment>
 
-  <p><a href="../">&lt; Back</a></p> 
+  <p><a href="../">&lt; Back</a></p>
 
   <h1 class="id">
     {id}
@@ -46,7 +46,7 @@ let exists = res.ok;
     <a href={`https://github.com/llakala/adios-wrappers/tree/main/modules/${id}${exists ? '' : '/default'}.nix`}>Source file</a>
   </h1>
 
-  <h2>Options</h2> 
+  <h2>Options</h2>
 
   {
     Object.entries(module.options).map(([name, option]) => (
