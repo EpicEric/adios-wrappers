@@ -1,10 +1,12 @@
 let
-  inherit (builtins) mapAttrs getFlake;
+  inherit (builtins) attrNames filter mapAttrs getFlake;
   flake = getFlake (toString ../.);
   keysToRemove = [
     "defaultFunc"
     "mergeFunc"
   ];
+
+  filterAttrValues = pred: set: removeAttrs set (filter (name: !pred set.${name}) (attrNames set));
 in
 mapAttrs (_: wrapper: {
   options = mapAttrs (
@@ -14,4 +16,4 @@ mapAttrs (_: wrapper: {
       type = option.type.name;
     }
   ) wrapper.options;
-}) flake.wrapperModules
+}) (filterAttrValues (wrapper: (wrapper.meta.renderDocs or null) != false) flake.wrapperModules)
