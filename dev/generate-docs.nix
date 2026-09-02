@@ -1,12 +1,16 @@
 let
   inherit (builtins) attrNames filter mapAttrs getFlake;
-  flake = getFlake (toString ../.);
+  filterAttrValues = pred: set: removeAttrs set (filter (name: !pred set.${name}) (attrNames set));
   keysToRemove = [
     "defaultFunc"
     "mergeFunc"
   ];
+  flake = getFlake (toString ../.);
 
-  filterAttrValues = pred: set: removeAttrs set (filter (name: !pred set.${name}) (attrNames set));
+  # modules can opt out of docs generation by setting `meta.renderDocs = false;`
+  filteredModules = filterAttrValues (
+    wrapper: (wrapper.meta.renderDocs or null) != false
+  ) flake.wrapperModules;
 in
 mapAttrs (_: wrapper: {
   options = mapAttrs (
@@ -16,4 +20,4 @@ mapAttrs (_: wrapper: {
       type = option.type.name;
     }
   ) wrapper.options;
-}) (filterAttrValues (wrapper: (wrapper.meta.renderDocs or null) != false) flake.wrapperModules)
+}) filteredModules
