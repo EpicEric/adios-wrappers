@@ -146,7 +146,7 @@
   impl =
     { options, inputs }:
     let
-      inherit (inputs.nixpkgs) pkgs;
+      inherit (inputs.nixpkgs.pkgs) pkgs writeText;
       inherit (inputs.nixpkgs.lib) makeBinPath optionalAttrs;
       inherit (builtins) listToAttrs attrNames;
       generator = pkgs.formats.toml {};
@@ -182,7 +182,7 @@
           if options ? initLuaFile then
             options.initLuaFile
           else if options ? initLua then
-            generator.generate "init.lua" options.initLua
+            writeText "init.lua" options.initLua
           else
             null;
       }
