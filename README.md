@@ -61,7 +61,7 @@ blogpost](https://fzakaria.com/2025/07/07/home-manager-is-a-false-enlightenment)
 
 ### Flakes
 
-See the example config [here](./examples/flakes), which contains both a `flake.nix` and a `wrappers.nix`. Even if you
+See the example config [here](./docs/flakes-example), which contains both a `flake.nix` and a `wrappers.nix`. Even if you
 have an existing flake, the relevant parts of the example flake can simply be copied into yours.
 
 ### Non-flakes
@@ -76,7 +76,7 @@ npins add github llakala lladios -b main --name adios
 npins add github llakala adios-wrappers -b main
 ```
 
-Once you've done that, see the example npins-based config [here](./examples/npins). This contains both a `wrappers.nix`
+Once you've done that, see the example npins-based config [here](./docs/npins-example). This contains both a `wrappers.nix`
 and `shell.nix`.
 
 ## Usage
