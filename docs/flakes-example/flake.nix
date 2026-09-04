@@ -37,7 +37,6 @@
           wrappers = inputs.self.wrappers.${system};
         in {
           default = pkgs.mkShellNoCC {
-            allowSubstitutes = false; # Prevent a cache.nixos.org call every time
             # TODO: add your wrappers here!
             packages = [
               wrappers.foo
