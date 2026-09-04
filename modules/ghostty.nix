@@ -25,7 +25,7 @@
     configFile = {
       type = types.pathLike;
       description = ''
-        A list of `config.ghostty` files to be injected into the wrapped package.
+        `config.ghostty` file to be injected into the wrapped package.
 
         See the ghostty [documentation](https://ghostty.org/docs/config).
 
