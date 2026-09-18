@@ -138,7 +138,7 @@ in {
       ];
       paths =
         if options.extraPaths == [] then
-          [ "${options.package}" ]
+          [ options.package ]
         else
           map (path: "${path}") ([ options.package ] ++ options.extraPaths);
       meta.mainProgram = options.binaryName;
