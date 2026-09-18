@@ -132,7 +132,10 @@ in {
     in
     stdenvNoCC.mkDerivation {
       name = "${options.pname}-wrapped";
-      buildInputs = [ makeBinaryWrapper ];
+      buildInputs = [
+        lndir
+        makeBinaryWrapper
+      ];
       paths =
         if options.extraPaths == [] then
           [ "${options.package}" ]
@@ -149,7 +152,7 @@ in {
       buildCommand = ''
         mkdir -p $out
         for i in $(cat $pathsPath); do
-          ${lndir}/bin/lndir -silent $i $out
+          lndir -silent $i $out
         done
         ${symlinkedStr}
         ${ifNotNull options.preWrap}
