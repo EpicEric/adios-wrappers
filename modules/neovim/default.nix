@@ -86,7 +86,7 @@
         A list of *plugin* paths, which will be included in Neovim's 'runtimepath'.
 
         Your personal config should be declared as a plugin here, and then loaded
-        via the 'initLuaFile'/'initLuaContents' option:
+        via the 'initLuaFile'/'initLuaContents' option.
 
         Plugins that are set to strings will be treated as absolute paths
         and loaded impurely at runtime, rather than at buildtime. This allows
