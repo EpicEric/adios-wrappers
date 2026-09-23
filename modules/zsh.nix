@@ -79,13 +79,12 @@
 
     aliases = {
       type = types.attrsOf (
-        types.union [
-          types.string
-          (types.struct "global alias" {
+        types.either types.string (
+          types.struct "global alias" {
             global = types.bool;
             command = types.string;
-          })
-        ]
+          }
+        )
       );
       description = ''
         Aliases to be defined in the wrapped package's `.zshrc` file. Aliases
@@ -106,13 +105,12 @@
 
     plugins = {
       type = types.listOf (
-        types.union [
-          types.derivation
-          (types.struct "plugin" {
+        types.either types.derivation (
+          types.struct "plugin" {
             package = types.derivation;
             path = types.string;
-          })
-        ]
+          }
+        )
       );
       description = ''
         Plugins to be appended to the wrapped package's `.zshrc`.

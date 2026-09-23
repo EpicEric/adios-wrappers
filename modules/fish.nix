@@ -52,21 +52,16 @@
         let
           # Just renamed for a nicer internal name
           abbrType = types.rename "abbr" (
-            types.union [
-              types.string
-              (types.struct "abbrWithCursor" {
+            types.either types.string (
+              types.struct "abbrWithCursor" {
                 setCursor = types.bool;
                 expansion = types.string;
-              })
-            ]
+              }
+            )
+
           );
         in
-        types.attrsOf (
-          types.union [
-            abbrType
-            (types.listOf (types.attrsOf abbrType))
-          ]
-        );
+        types.attrsOf (types.either abbrType (types.listOf (types.attrsOf abbrType)));
       description = ''
         Custom abbreviations to be injected into the wrapped package.
 
