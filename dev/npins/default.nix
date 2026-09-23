@@ -15,13 +15,25 @@ let
   mkFunctor =
     fn:
     let
-      e = builtins.tryEval (fn { });
+      e = builtins.tryEval (fn {});
     in
-    (if e.success then e.value else { error = fn { }; }) // { __functor = _self: fn; };
+    (
+      if e.success then
+        e.value
+      else
+        { error = fn {}; }
+    )
+    // {
+      __functor = _self: fn;
+    };
 
   # https://github.com/NixOS/nixpkgs/blob/0258808f5744ca980b9a1f24fe0b1e6f0fecee9c/lib/lists.nix#L295
   range =
-    first: last: if first > last then [ ] else builtins.genList (n: first + n) (last - first + 1);
+    first: last:
+    if first > last then
+      []
+    else
+      builtins.genList (n: first + n) (last - first + 1);
 
   # https://github.com/NixOS/nixpkgs/blob/0258808f5744ca980b9a1f24fe0b1e6f0fecee9c/lib/strings.nix#L257
   stringToCharacters = s: map (p: builtins.substring p 1 s) (range 0 (builtins.stringLength s - 1));
@@ -55,7 +67,7 @@ let
   mkSource =
     name: spec:
     {
-      pkgs ? null,
+      pkgs ? null
     }:
     assert spec ? type;
     let
@@ -65,16 +77,15 @@ let
         if pkgs == null then
           {
             inherit (builtins) fetchTarball fetchurl;
-            # For some fucking reason, fetchGit has a different signature than the other builtin fetchers …
+            # Frustratingly, due to flakes and `fetchTree`, `fetchGit`
+            # has a different signature than the other builtin
+            # fetchers
             fetchGit = args: (builtins.fetchGit args).outPath;
           }
         else
           {
             fetchTarball =
-              {
-                url,
-                sha256,
-              }:
+              { url, sha256 }:
               pkgs.fetchzip {
                 inherit url sha256;
                 extension = "tar";
@@ -86,7 +97,7 @@ let
                 submodules,
                 rev,
                 name,
-                narHash,
+                narHash
               }:
               pkgs.fetchgit {
                 inherit url rev name;
@@ -95,7 +106,6 @@ let
               };
           };
 
-      # Dispatch to the correct code path based on the type
       path =
         if spec.type == "Git" then
           mkGitSource fetchers spec
@@ -105,8 +115,8 @@ let
           mkPyPiSource fetchers spec
         else if spec.type == "Channel" then
           mkChannelSource fetchers spec
-        else if spec.type == "Tarball" then
-          mkTarballSource fetchers spec
+        else if spec.type == "Url" || spec.type == "MutableUrl" then
+          mkUrlSource fetchers spec
         else if spec.type == "Container" then
           mkContainerSource pkgs spec
         else
@@ -115,11 +125,7 @@ let
     spec // { outPath = mayOverride name path; };
 
   mkGitSource =
-    {
-      fetchTarball,
-      fetchGit,
-      ...
-    }:
+    { fetchTarball, fetchGit, ... }:
     {
       repository,
       revision,
@@ -170,11 +176,7 @@ let
 
   mkPyPiSource =
     { fetchurl, ... }:
-    {
-      url,
-      hash,
-      ...
-    }:
+    { url, hash, ... }:
     fetchurl {
       inherit url;
       sha256 = hash;
@@ -182,26 +184,22 @@ let
 
   mkChannelSource =
     { fetchTarball, ... }:
-    {
-      url,
-      hash,
-      ...
-    }:
+    { url, hash, ... }:
     fetchTarball {
       inherit url;
       sha256 = hash;
     };
 
-  mkTarballSource =
-    { fetchTarball, ... }:
+  mkUrlSource =
+    { fetchTarball, fetchurl, ... }:
     {
       url,
-      locked_url ? url,
       hash,
+      unpack,
       ...
     }:
-    fetchTarball {
-      url = locked_url;
+    (if unpack then fetchTarball else fetchurl) {
+      inherit url;
       sha256 = hash;
     };
 
@@ -211,27 +209,38 @@ let
       image_name,
       image_tag,
       image_digest,
+      hash,
       ...
-    }:
+    } @ args:
     if pkgs == null then
       builtins.throw "container sources require passing in a Nixpkgs value: https://github.com/andir/npins/blob/master/README.md#using-the-nixpkgs-fetchers"
     else
-      pkgs.dockerTools.pullImage {
-        imageName = image_name;
-        imageDigest = image_digest;
-        finalImageTag = image_tag;
-      };
+      pkgs.dockerTools.pullImage (
+        {
+          imageName = image_name;
+          imageDigest = image_digest;
+          finalImageTag = image_tag;
+          hash = hash;
+        }
+        // (
+          if args.arch or null != null then
+            { arch = args.arch; }
+          else
+            {}
+        )
+      );
+
 in
 mkFunctor (
   {
-    input ? ./sources.json,
+    input ? ./sources.json
   }:
   let
     data =
       if builtins.isPath input then
         # while `readFile` will throw an error anyways if the path doesn't exist,
         # we still need to check beforehand because *our* error can be caught but not the one from the builtin
-        # *piegames sighs*
+        # See: <https://git.lix.systems/lix-project/lix/issues/1098>
         if builtins.pathExists input then
           builtins.fromJSON (builtins.readFile input)
         else
@@ -242,7 +251,7 @@ mkFunctor (
         throw "Unsupported input type ${builtins.typeOf input}, must be a path or an attrset";
     version = data.version;
   in
-  if version == 7 then
+  if version == 8 then
     builtins.mapAttrs (name: spec: mkFunctor (mkSource name spec)) data.pins
   else
     throw "Unsupported format version ${toString version} in sources.json. Try running `npins upgrade`"
