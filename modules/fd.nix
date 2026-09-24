@@ -1,4 +1,5 @@
-{ types, ... }: {
+{ types, assertions, ... }:
+{
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
     nixpkgs.from = { parent }: parent.nixpkgs;
@@ -42,12 +43,15 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "ignoreContents" "ignoreFile")
+  ];
+
   impl =
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
     in
-    assert !(options ? ignoreContents && options ? ignoreFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {
