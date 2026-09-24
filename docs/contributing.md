@@ -79,13 +79,17 @@ Here's an example module that adds both:
       description = "The foo package to be wrapped.";
     };
   };
+
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+  ];
+
   impl =
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.toml {};
     in
-    assert !(options ? settings && options ? configFile);
     inputs.mkWrapper {
       symlinks = {
         "$out/foo/foo.toml" =

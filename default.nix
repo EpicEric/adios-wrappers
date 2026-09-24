@@ -20,5 +20,12 @@ let
     else
       args.adios;
 in
-
-adios.lib.importModules { directory = ./modules; }
+adios.lib.importModules {
+  directory = ./modules;
+  args = adios // {
+    assertions.disjoint = a: b: {
+      verify = { options }: !(options ? ${a} && options ? ${b});
+      explain = { options }: "'options.${a}' and 'options.${b}' are disjoint, but both were set";
+    };
+  };
+}
