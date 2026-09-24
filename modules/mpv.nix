@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     nixpkgs.from = { parent }: parent.nixpkgs;
@@ -65,6 +65,11 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+    (assertions.disjoint "keybinds" "keybindsFile")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -114,8 +119,6 @@
         else
           null;
     in
-    assert !(options ? settings && options ? configFile);
-    assert !(options ? keybinds && options ? keybindsFile);
     # We use the nixpkgs wrapper and not `mkWrapper` for a couple of reasons:
     # - The double wrapping would make `umpv` not work if wrapping their wrapper
     # - Wrapping with `mkWrapper` first and then the nixpkgs wrapper is surprisingly annoying
