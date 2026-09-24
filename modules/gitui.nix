@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -128,10 +128,16 @@
 
     package = {
       type = types.derivation;
-      defaultFunc = { inputs }: inputs.nixpkgs.pkgs.gitui;
       description = "The gitui package to be wrapped.";
+      defaultFunc = { inputs }: inputs.nixpkgs.pkgs.gitui;
     };
   };
+
+  assertions = [
+    (assertions.disjoint "keybinds" "keybindsFile")
+    (assertions.disjoint "symbols" "symbolsFile")
+    (assertions.disjoint "theme" "themeFile")
+  ];
 
   impl =
     { options, inputs }:
@@ -176,9 +182,6 @@
           )
         '';
     in
-    assert !(options ? keybinds && options ? keybindsFile);
-    assert !(options ? symbols && options ? symbolsFile);
-    assert !(options ? theme && options ? themeFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {
