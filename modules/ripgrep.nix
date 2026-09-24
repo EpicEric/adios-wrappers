@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -36,9 +36,12 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "flags" "configFile")
+  ];
+
   impl =
     { options, inputs }:
-    assert !(options ? flags && options ? configFile);
     if options ? flags then
       inputs.mkWrapper {
         inherit (options) package flags;

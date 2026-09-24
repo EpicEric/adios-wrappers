@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     nixpkgs.from = { parent }: parent.nixpkgs;
@@ -56,6 +56,10 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "policies" "policiesFiles")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -63,7 +67,6 @@
       inherit (builtins) filter attrNames;
       filterNullAttrs = set: removeAttrs set (filter (name: isNull set.${name}) (attrNames set));
     in
-    assert !(options ? policies && options ? policiesFiles);
     wrapFirefox options.package (filterNullAttrs {
       extraPolicies = options.policies or null;
       # From my testing, these options need to be coerced to store paths.

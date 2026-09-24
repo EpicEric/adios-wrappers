@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -39,12 +39,15 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "flags" "configFile")
+  ];
+
   impl =
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
     in
-    assert !(options ? flags && options ? configFile);
     inputs.mkWrapper {
       inherit (options) package;
       environment = {

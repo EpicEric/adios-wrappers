@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -50,6 +50,11 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+    (assertions.disjoint "theme" "themeFile")
+  ];
+
   mutations."/fish".interactiveShellInit =
     { options }:
     # fish
@@ -82,8 +87,6 @@
         } " ";
       };
     in
-    assert !(options ? settings && options ? configFile);
-    assert !(options ? theme && options ? themeFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {

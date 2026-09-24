@@ -42,6 +42,15 @@
     };
   };
 
+  # TODO: consider adding 'assertions.disjointSets' for this usecase
+  assertions = [
+    {
+      verify = { options }: !(options ? configDir && (options ? settings || options ? hosts));
+      explain =
+        { options }: "'options.configDir' is disjoint with 'options.settings' and 'options.hosts'";
+    }
+  ];
+
   mutations = {
     "/git".settings =
       { options, inputs }:
@@ -69,7 +78,6 @@
           value
       );
     in
-    assert !(options ? configDir && (options ? settings || options ? hosts));
     if options ? configDir then
       inputs.mkWrapper {
         inherit (options) package;

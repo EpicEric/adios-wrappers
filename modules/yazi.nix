@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -143,6 +143,12 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "settings" "settingsFile")
+    (assertions.disjoint "keymap" "keymapFile")
+    (assertions.disjoint "initLua" "initLuaFile")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -151,9 +157,6 @@
       inherit (builtins) listToAttrs attrNames;
       generator = pkgs.formats.toml {};
     in
-    assert !(options ? settings && options ? settingsFile);
-    assert !(options ? keymap && options ? keymapFile);
-    assert !(options ? initLua && options ? initLuaFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {

@@ -1,4 +1,4 @@
-{ types, ... } @ adios:
+{ types, assertions, ... } @ adios:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -43,18 +43,16 @@
           inherit (inputs.nixpkgs.pkgs) formats;
           inherit (adios.lib) merge;
           generator = formats.toml {};
-          default =
-            assert !(options ? settings && options ? configFile);
-            {
-              inherit (options) package;
-              environment.STARSHIP_CONFIG =
-                if options ? configFile then
-                  options.configFile
-                else if options ? settings then
-                  generator.generate "starship.toml" options.settings
-                else
-                  null;
-            };
+          default = {
+            inherit (options) package;
+            environment.STARSHIP_CONFIG =
+              if options ? configFile then
+                options.configFile
+              else if options ? settings then
+                generator.generate "starship.toml" options.settings
+              else
+                null;
+          };
         in
         # Allow mutators to change the default value, with the mutators taking
         # priority if the key is the same
@@ -67,6 +65,10 @@
       description = "The starship package to be wrapped.";
     };
   };
+
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+  ];
 
   mutations."/fish".interactiveShellInit =
     { options, inputs }:
