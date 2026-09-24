@@ -1,4 +1,4 @@
-{ types, ... } @ adios:
+{ types, assertions, ... } @ adios:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -54,6 +54,11 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+    (assertions.disjoint "ignoredPaths" "ignoreFile")
+  ];
+
   mutations."/starship".wrapperAttrs =
     { options }:
     {
@@ -67,8 +72,6 @@
       inherit (inputs.nixpkgs.pkgs) writeText formats;
       generator = formats.gitIni {};
     in
-    assert !(options ? settings && options ? configFile);
-    assert !(options ? ignoredPaths && options ? ignoreFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {

@@ -1,4 +1,4 @@
-{ types, ... } @ adios:
+{ types, assertions, ... } @ adios:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -166,14 +166,17 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "completions" "completionsFiles")
+    (assertions.disjoint "functions" "functionsFiles")
+  ];
+
   impl =
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) listToAttrs attrNames;
     in
-    assert !(options ? completions && options ? completionsFiles);
-    assert !(options ? functions && options ? functionsFiles);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {

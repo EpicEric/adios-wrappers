@@ -1,5 +1,5 @@
 # thank you to Gerg-L for his work on mnw, as most of the bash is copied from there.
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     nixpkgs.from = { parent }: parent.nixpkgs;
@@ -122,6 +122,10 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "initLuaFile" "initLuaContents")
+  ];
+
   impl =
     { inputs, options }:
     let
@@ -214,7 +218,6 @@
           ${userInitLua}
         '';
     in
-    assert options ? initLuaFile != options ? initLuaContents;
     inputs.mkWrapper {
       pname = "neovim";
       binaryName = "nvim";
