@@ -123,4 +123,8 @@
         ZELLIJ_CONFIG_DIR = "$out/zellij-config";
       };
     };
+
+  meta = {
+    maintainers = [ "EpicEric" ];
+  };
 }
