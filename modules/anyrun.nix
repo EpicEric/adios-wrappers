@@ -1,4 +1,5 @@
-{ types, ... }: {
+{ types, assertions, ... }:
+{
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
     nixpkgs.from = { parent }: parent.nixpkgs;
@@ -61,6 +62,10 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "cssContents" "cssFile")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -68,7 +73,6 @@
       inherit (builtins) attrNames baseNameOf listToAttrs unsafeDiscardStringContext;
       inherit (inputs.nixpkgs.lib) optionalAttrs;
     in
-    assert !(options ? cssContents && options ? cssFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {

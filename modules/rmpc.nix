@@ -1,4 +1,5 @@
-{ types, ... }: {
+{ types, assertions, ... }:
+{
   inputs = {
     nixpkgs.from = { parent }: parent.nixpkgs;
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -42,6 +43,10 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "configContents" "configFile")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -49,7 +54,6 @@
       inherit (builtins) attrNames listToAttrs;
       inherit (inputs.nixpkgs.lib) optionalAttrs;
     in
-    assert !(options ? configContents && options ? configFile);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {
