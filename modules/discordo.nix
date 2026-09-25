@@ -87,6 +87,6 @@
     };
 
   meta = {
-    maintainers = [ "poacher" ];
+    maintainers = [];
   };
 }

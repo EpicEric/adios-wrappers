@@ -61,6 +61,6 @@
     };
 
   meta = {
-    maintainers = [ "mango" ];
+    maintainers = [];
   };
 }

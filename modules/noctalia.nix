@@ -59,6 +59,6 @@
     };
 
   meta = {
-    maintainers = [ "pengo" ];
+    maintainers = [];
   };
 }
