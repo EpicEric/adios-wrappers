@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -68,6 +68,11 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "settings" "configFile")
+    (assertions.disjoint "barStyle" "cssFile")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -88,8 +93,6 @@
         else
           [];
     in
-    assert !(options ? settings && options ? configFile);
-    assert !(options ? barStyle && options ? cssFile);
     inputs.mkWrapper {
       inherit (options) package;
       flags = configFlag ++ styleFlag;

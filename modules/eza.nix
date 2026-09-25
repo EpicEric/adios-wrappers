@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -42,13 +42,16 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "theme" "themeFile")
+  ];
+
   impl =
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.json {};
     in
-    assert !(options ? theme && options ? themeFile);
     inputs.mkWrapper {
       inherit (options) package flags;
       symlinks = {

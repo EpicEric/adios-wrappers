@@ -72,6 +72,19 @@
     };
   };
 
+  # TODO: add 'assertions.oneOf' (name pending) for this usecase
+  assertions = [
+    {
+      verify = { options }: options ? settings != options ? configFile;
+      explain =
+        { options }:
+        if options ? settings then
+          "both 'options.settings' or 'options.configFile' were set"
+        else
+          "neither 'options.settings' nor 'options.configFile' were set";
+    }
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -109,19 +122,6 @@
           [];
       flags = dmenuFlags ++ logsFlags ++ configFlag;
     in
-    assert (
-      if options ? dmenuFlags then
-        (options ? settings || options ? configFile)
-      else
-        true
-    );
-    assert (
-      if options ? logFlags then
-        (options ? settings || options ? configFile)
-      else
-        true
-    );
-    assert !(options ? settings && options ? configFile);
     inputs.mkWrapper {
       inherit (options) package;
       inherit flags;
