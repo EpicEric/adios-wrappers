@@ -1,4 +1,4 @@
-{ types, ... }:
+{ types, assertions, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -59,6 +59,10 @@
     };
   };
 
+  assertions = [
+    (assertions.disjoint "configDir" "config")
+  ];
+
   impl =
     { options, inputs }:
     let
@@ -82,7 +86,6 @@
         options.hostname
       ];
     in
-    assert !(options ? configDir && options ? config);
     inputs.mkWrapper {
       inherit (options) package;
       symlinks = {
