@@ -59,6 +59,6 @@
     };
 
   meta = {
-    maintainers = [];
+    maintainers = [ "EpicEric" ];
   };
 }
