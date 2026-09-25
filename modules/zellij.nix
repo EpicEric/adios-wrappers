@@ -125,6 +125,9 @@
     };
 
   meta = {
-    maintainers = [ "EpicEric" ];
+    maintainers = [
+      "EpicEric"
+      "es-sai-fi"
+    ];
   };
 }
