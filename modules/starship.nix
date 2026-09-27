@@ -78,7 +78,9 @@
     in
     # fish
     ''
-      ${getExe finalWrapper} init fish --print-full-init | source
+      ${getExe finalWrapper} init fish --print-full-init \
+        | string replace --all "${getExe options.package}" "${getExe finalWrapper}" \
+        | source
     '';
 
   impl = { options, inputs }: inputs.mkWrapper options.wrapperAttrs;
