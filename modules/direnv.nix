@@ -59,53 +59,55 @@
     };
   };
 
-  mutations."/fish".interactiveShellInit =
-    { options, inputs }:
-    let
-      inherit (inputs.nixpkgs.lib) getExe;
-      finalWrapper = options {};
-    in
-    ''
-      ${getExe finalWrapper} hook fish | source
-    '';
+  mutations = {
+    "/fish".interactiveShellInit =
+      { options, inputs }:
+      let
+        inherit (inputs.nixpkgs.lib) getExe;
+        finalWrapper = options {};
+      in
+      ''
+        ${getExe finalWrapper} hook fish | source
+      '';
 
-  # shell configuration for nushell, uses home managers config since
-  # direnv doesnt have a command to generate
-  mutations."/nushell".shellInit =
-    { options, inputs }:
-    let
-      inherit (inputs.nixpkgs.lib) getExe;
-      finalWrapper = options {};
-    in
-    ''
-      $env.config = ($env.config? | default {})
-      $env.config.hooks = ($env.config.hooks? | default {})
-      $env.config.hooks.pre_prompt = (
-          $env.config.hooks.pre_prompt?
-          | default []
-          | append {||
-              ${getExe finalWrapper} export json
-              | from json --strict
-              | default {}
-              | items {|key, value|
-                  let value = do (
-                      {
-                        "PATH": {
-                          from_string: {|s| $s | split row (char esep) | path expand --no-symlink }
-                          to_string: {|v| $v | path expand --no-symlink | str join (char esep) }
+    # shell configuration for nushell, uses home managers config since
+    # direnv doesnt have a command to generate
+    "/nushell".shellInit =
+      { options, inputs }:
+      let
+        inherit (inputs.nixpkgs.lib) getExe;
+        finalWrapper = options {};
+      in
+      ''
+        $env.config = ($env.config? | default {})
+        $env.config.hooks = ($env.config.hooks? | default {})
+        $env.config.hooks.pre_prompt = (
+            $env.config.hooks.pre_prompt?
+            | default []
+            | append {||
+                ${getExe finalWrapper} export json
+                | from json --strict
+                | default {}
+                | items {|key, value|
+                    let value = do (
+                        {
+                          "PATH": {
+                            from_string: {|s| $s | split row (char esep) | path expand --no-symlink }
+                            to_string: {|v| $v | path expand --no-symlink | str join (char esep) }
+                          }
                         }
-                      }
-                      | merge ($env.ENV_CONVERSIONS? | default {})
-                      | get ([[value, optional, insensitive]; [$key, true, true] [from_string, true, false]] | into cell-path)
-                      | if ($in | is-empty) { {|x| $x} } else { $in }
-                  ) $value
-                  return [ $key $value ]
-              }
-              | into record
-              | load-env
-          }
-      )
-    '';
+                        | merge ($env.ENV_CONVERSIONS? | default {})
+                        | get ([[value, optional, insensitive]; [$key, true, true] [from_string, true, false]] | into cell-path)
+                        | if ($in | is-empty) { {|x| $x} } else { $in }
+                    ) $value
+                    return [ $key $value ]
+                }
+                | into record
+                | load-env
+            }
+        )
+      '';
+  };
 
   impl =
     { options, inputs }:

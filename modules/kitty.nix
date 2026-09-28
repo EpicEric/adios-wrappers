@@ -77,15 +77,17 @@
     (assertions.disjoint "portalSettings" "portalConfigFile")
   ];
 
-  mutations."/fish".interactiveShellInit =
-    { options }:
-    # fish
-    ''
-      # We can't use the `shell_integration` output of our wrapper, since wrappers
-      # don't preserve attributes like this
-      source "${options.package.shell_integration}/fish/vendor_conf.d/kitty-shell-integration.fish"
-      set --prepend fish_complete_path "${options.package.shell_integration}/fish/vendor_completions.d"
-    '';
+  mutations = {
+    "/fish".interactiveShellInit =
+      { options }:
+      # fish
+      ''
+        # We can't use the `shell_integration` output of our wrapper, since wrappers
+        # don't preserve attributes like this
+        source "${options.package.shell_integration}/fish/vendor_conf.d/kitty-shell-integration.fish"
+        set --prepend fish_complete_path "${options.package.shell_integration}/fish/vendor_completions.d"
+      '';
+  };
 
   impl =
     { options, inputs }:

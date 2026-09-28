@@ -70,18 +70,20 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  mutations."/fish".interactiveShellInit =
-    { options, inputs }:
-    let
-      finalWrapper = options {};
-      inherit (inputs.nixpkgs.lib) getExe;
-    in
-    # fish
-    ''
-      ${getExe finalWrapper} init fish --print-full-init \
-        | string replace --all "${getExe options.package}" "${getExe finalWrapper}" \
-        | source
-    '';
+  mutations = {
+    "/fish".interactiveShellInit =
+      { options, inputs }:
+      let
+        finalWrapper = options {};
+        inherit (inputs.nixpkgs.lib) getExe;
+      in
+      # fish
+      ''
+        ${getExe finalWrapper} init fish --print-full-init \
+          | string replace --all "${getExe options.package}" "${getExe finalWrapper}" \
+          | source
+      '';
+  };
 
   impl = { options, inputs }: inputs.mkWrapper options.wrapperAttrs;
 

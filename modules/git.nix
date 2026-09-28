@@ -59,11 +59,13 @@
     (assertions.disjoint "ignoredPaths" "ignoreFile")
   ];
 
-  mutations."/starship".wrapperAttrs =
-    { options }:
-    {
-      environment.XDG_CONFIG_HOME = options {};
-    };
+  mutations = {
+    "/starship".wrapperAttrs =
+      { options }:
+      {
+        environment.XDG_CONFIG_HOME = options {};
+      };
+  };
 
   impl =
     { options, inputs }:

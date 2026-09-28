@@ -30,17 +30,19 @@
     };
   };
 
-  mutations."/fish".interactiveShellInit =
-    { options, inputs }:
-    let
-      inherit (inputs.nixpkgs.lib) getExe;
-      inherit (builtins) concatStringsSep;
-      finalWrapper = options {};
-    in
-    # fish
-    ''
-      ${getExe finalWrapper} init fish ${concatStringsSep " " options.flags} | source
-    '';
+  mutations = {
+    "/fish".interactiveShellInit =
+      { options, inputs }:
+      let
+        inherit (inputs.nixpkgs.lib) getExe;
+        inherit (builtins) concatStringsSep;
+        finalWrapper = options {};
+      in
+      # fish
+      ''
+        ${getExe finalWrapper} init fish ${concatStringsSep " " options.flags} | source
+      '';
+  };
 
   impl =
     { options, inputs }:
