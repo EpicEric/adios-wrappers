@@ -78,14 +78,13 @@
     (assertions.disjoint "layoutsContents" "layoutsFiles")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) listToAttrs attrNames;
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (inputs.nixpkgs.lib) optionalAttrs;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/zellij-config/config.kdl" =
@@ -127,6 +126,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [

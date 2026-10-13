@@ -38,7 +38,7 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
@@ -50,8 +50,7 @@
           mkKeyValue = key: value: if isString value then "${key} ${value}" else optionalString value key;
           listsAsDuplicateKeys = true;
         } settings;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/gnupg/gpg.conf" =
@@ -68,6 +67,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "coca" ];

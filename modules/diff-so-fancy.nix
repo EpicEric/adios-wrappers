@@ -14,19 +14,18 @@
     };
   };
 
-  result = promise (
-    { options, inputs }:
-    let
-      gitWrapper = inputs.git {};
-    in
-    inputs.mkWrapper {
+  inputs.mkWrapper.options = promise (
+    { options, inputs, results }:
+    {
       inherit (options) package;
       environment = {
         # If you don't have this, diff-so-fancy can't find your gitconfig
-        GIT_CONFIG_GLOBAL = "${gitWrapper}/git/config";
+        GIT_CONFIG_GLOBAL = "${results.git}/git/config";
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

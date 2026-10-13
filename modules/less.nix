@@ -43,12 +43,11 @@
     (assertions.disjoint "flags" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       environment = {
         LESS = if options ? flags then concatStringsSep " " options.flags else null;
@@ -56,6 +55,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

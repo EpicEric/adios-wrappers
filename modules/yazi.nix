@@ -150,15 +150,14 @@
     (assertions.disjoint "initLua" "initLuaFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) pkgs writeText;
       inherit (inputs.nixpkgs.lib) makeBinPath optionalAttrs;
       inherit (builtins) listToAttrs attrNames;
       generator = pkgs.formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/yazi/yazi.toml" =
@@ -214,6 +213,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

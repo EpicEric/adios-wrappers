@@ -73,7 +73,7 @@
     (assertions.disjoint "barStyle" "cssFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText formats;
@@ -92,8 +92,7 @@
           [ "--style=${writeText "style.css" options.barStyle}" ]
         else
           [];
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       flags = configFlag ++ styleFlag;
       environment = {
@@ -101,6 +100,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

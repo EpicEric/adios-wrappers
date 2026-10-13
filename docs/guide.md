@@ -153,12 +153,13 @@ let
     };
     git = {
       inputs.less.from = { parent }: parent.less;
-      options.settings.defaultFunc =
-        { options, inputs }:
+      options.settings.default = promise (
+        { options, inputs, result }:
         {
-          core.pager = inputs.nixpkgs.lib.getExe (options { });
-        };
-      mutations."/fish".abbreviations = _: {
+          core.pager = inputs.nixpkgs.lib.getExe result;
+        }
+      );
+      mutations."/fish".abbreviations = {
         gs = "git status";
       };
     };
@@ -209,16 +210,17 @@ _:
   # adding our less module as an input, so it can be used in settings
   inputs.less.from = { parent }: parent.less;
 
-  # using a defaultFunc instead of a default, so we can read from inputs
-  options.settings.defaultFunc =
-    { options, inputs }:
+  # using a promise, so we can read from inputs
+  options.settings.default = promise (
+    { options, inputs, results }:
     {
       user = {
         name = "Your Name";
         email = "your.email@host.provider";
       };
-      # calling the less module with {} to get its final derivation
-      core.pager = inputs.nixpkgs.lib.getExe (inputs.less {});
+      # accessing the result of the less module for the final derivation
+      core.pager = inputs.nixpkgs.lib.getExe results.less;
     };
+  );
 }
 ```

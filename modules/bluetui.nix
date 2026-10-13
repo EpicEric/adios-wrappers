@@ -38,13 +38,12 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs) pkgs;
       generator = pkgs.formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/bluetui/config.toml" =
@@ -60,6 +59,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

@@ -47,13 +47,12 @@
     (assertions.disjoint "configContents" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) listToAttrs;
       inherit (inputs.nixpkgs.pkgs) writeText;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/wezterm-config/wezterm.lua" =
@@ -82,6 +81,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

@@ -70,7 +70,7 @@
     (assertions.disjoint "keybinds" "keybindsFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) mpv writeText linkFarm;
@@ -130,7 +130,7 @@
         })
       );
     in
-    # We use the nixpkgs wrapper and not `mkWrapper` for a couple of reasons:
+    # We use the nixpkgs wrapper and not for a couple of reasons:
     # - The double wrapping would make `umpv` not work if wrapping their wrapper
     # - Wrapping with `mkWrapper` first and then the nixpkgs wrapper is surprisingly annoying
     # - Copying over the entire nixpkgs wrapper would increase the maintaince burden here
@@ -143,6 +143,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "coca" ];

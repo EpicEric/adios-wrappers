@@ -46,14 +46,13 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       inherit (inputs.nixpkgs.lib) makeBinPath;
       generator = formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/jj-config/config.toml" =
@@ -76,6 +75,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "es-sai-fi" ];

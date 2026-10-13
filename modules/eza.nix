@@ -46,13 +46,12 @@
     (assertions.disjoint "theme" "themeFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.json {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package flags;
       symlinks = {
         "$out/eza-config/theme.yml" =
@@ -68,6 +67,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "EpicEric" ];

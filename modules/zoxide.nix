@@ -32,28 +32,29 @@
 
   mutations = {
     "/fish".interactiveShellInit = promise (
-      { options, inputs }:
+      { options, inputs, result }:
       let
         inherit (inputs.nixpkgs.lib) getExe;
         inherit (builtins) concatStringsSep;
-        finalWrapper = options {};
       in
       # fish
       ''
-        ${getExe finalWrapper} init fish ${concatStringsSep " " options.flags} | source
+        ${getExe result} init fish ${concatStringsSep " " options.flags} | source
       ''
     );
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
-    inputs.mkWrapper {
+    {
       inherit (options) package;
       environment = {
         _ZO_EXCLUDE_DIRS = options.excludedDirs or null;
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

@@ -36,13 +36,12 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
       mapFlags = flags: concatStringsSep " " (map (flag: "--add-flag \"${flag}\"") flags);
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       binaryName = "hydrus-client";
       flags = if options ? clientFlags then options.clientFlags else [];
@@ -55,6 +54,8 @@
           "";
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

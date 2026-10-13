@@ -48,14 +48,13 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.lib) optionals;
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.yaml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/config.yml" =
@@ -73,6 +72,8 @@
         ]);
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "EpicEric" ];

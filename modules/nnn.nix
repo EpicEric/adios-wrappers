@@ -45,12 +45,11 @@
     (assertions.disjoint "configContents" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       flags = options.flags or [];
       symlinks = {
@@ -67,6 +66,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "yarn" ];

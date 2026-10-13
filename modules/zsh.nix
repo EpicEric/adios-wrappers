@@ -148,7 +148,7 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
@@ -213,8 +213,7 @@
         + extraZshrcFiles
         + extraZshrcText
         + plugins;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       wrapperArgs =
         if options ? extraPackages then "--prefix PATH : ${makeBinPath options.extraPackages}" else null;
@@ -226,6 +225,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

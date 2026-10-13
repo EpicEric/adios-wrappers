@@ -38,13 +38,12 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/alacritty/alacritty.toml" =
@@ -61,6 +60,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "es-sai-fi" ];

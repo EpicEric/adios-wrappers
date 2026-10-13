@@ -61,21 +61,20 @@
 
   mutations = {
     "/starship".wrapperAttrs = promise (
-      { options }:
+      { result }:
       {
-        environment.XDG_CONFIG_HOME = options {};
+        environment.XDG_CONFIG_HOME = result;
       }
     );
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
       inherit (inputs.nixpkgs.pkgs) writeText formats;
       generator = formats.gitIni {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/git/config" =
@@ -98,6 +97,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

@@ -53,17 +53,16 @@
 
   mutations = {
     "/git".settings = promise (
-      { options, inputs }:
+      { inputs, result }:
       let
         inherit (inputs.nixpkgs.lib) getExe;
-        finalWrapper = options {};
       in {
-        credential."https://github.com".helper = "${getExe finalWrapper} auth git-credential";
+        credential."https://github.com".helper = "${getExe result} auth git-credential";
       }
     );
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) mapAttrs;
@@ -80,14 +79,14 @@
       );
     in
     if options ? configDir then
-      inputs.mkWrapper {
+      {
         inherit (options) package;
         environment = {
           GH_CONFIG_DIR = options.configDir;
         };
       }
     else
-      inputs.mkWrapper {
+      {
         inherit (options) package;
         symlinks = {
           "$out/gh/config.yml" =
@@ -106,6 +105,8 @@
         };
       }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

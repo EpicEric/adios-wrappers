@@ -8,7 +8,6 @@ let
     }";
 in {
   inputs = {
-    mkWrapper.from = { parent }: parent.mkWrapper;
     nixpkgs.from = { parent }: parent.nixpkgs;
   };
 

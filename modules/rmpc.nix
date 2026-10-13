@@ -47,14 +47,13 @@
     (assertions.disjoint "configContents" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) attrNames listToAttrs;
       inherit (inputs.nixpkgs.lib) optionalAttrs;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/rmpc/config.ron" =
@@ -79,6 +78,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "itsyunaya" ];

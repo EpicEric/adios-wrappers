@@ -36,12 +36,11 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.lib) optionals;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         # Unnecessary as `backgroundImage` can be passed directly to `-i` but this assists with debugging.
@@ -66,6 +65,8 @@
         ]);
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

@@ -23,9 +23,9 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
-    inputs.mkWrapper {
+    {
       inherit (options) package;
       symlinks = {
         "$out/quickshell" = options.configDir;
@@ -40,6 +40,8 @@
       '';
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "Squawkykaka" ];

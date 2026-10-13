@@ -57,14 +57,13 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs) pkgs;
       inherit (inputs.nixpkgs.pkgs) writeText;
       generator = pkgs.formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/hayabusa/config.lua" =
@@ -87,6 +86,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

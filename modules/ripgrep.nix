@@ -40,19 +40,21 @@
     (assertions.disjoint "flags" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     if options ? flags then
-      inputs.mkWrapper {
+      {
         inherit (options) package flags;
       }
     else
-      inputs.mkWrapper {
+      {
         environment = {
           RIPGREP_CONFIG_PATH = options.configFile or null;
         };
       }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];
