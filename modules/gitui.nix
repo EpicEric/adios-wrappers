@@ -139,7 +139,7 @@
     (assertions.disjoint "theme" "themeFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
@@ -181,8 +181,7 @@
           )}
           )
         '';
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/gitui/key_bindings.ron" =
@@ -223,6 +222,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

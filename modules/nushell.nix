@@ -43,7 +43,7 @@
     (assertions.disjoint "shellInit" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
@@ -64,8 +64,7 @@
             []
         )
       );
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       wrapperArgs =
         if options ? extraPackages then "--prefix PATH : ${makeBinPath options.extraPackages}" else null;
@@ -78,6 +77,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "Squawkykaka" ];

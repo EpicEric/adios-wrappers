@@ -90,7 +90,7 @@
     );
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep;
@@ -111,8 +111,7 @@
               generators.mkValueStringDefault {} value;
         } " ";
       };
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       binaryPaths = [
         "$out/bin/kitty"
@@ -153,6 +152,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

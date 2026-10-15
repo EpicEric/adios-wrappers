@@ -72,21 +72,21 @@
 
   mutations = {
     "/fish".interactiveShellInit = promise (
-      { options, inputs }:
+      { options, inputs, result }:
       let
-        finalWrapper = options {};
         inherit (inputs.nixpkgs.lib) getExe;
       in
       # fish
       ''
-        ${getExe finalWrapper} init fish --print-full-init \
-          | string replace --all "${getExe options.package}" "${getExe finalWrapper}" \
+        ${getExe result} init fish --print-full-init \
+          | string replace --all "${getExe options.package}" "${getExe result}" \
           | source
       ''
     );
   };
 
-  result = promise ({ options, inputs }: inputs.mkWrapper options.wrapperAttrs);
+  inputs.mkWrapper.options = promise ({ options, inputs }: options.wrapperAttrs);
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

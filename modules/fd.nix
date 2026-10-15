@@ -47,12 +47,11 @@
     (assertions.disjoint "ignoreContents" "ignoreFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/fd/fdignore" =
@@ -75,6 +74,8 @@
       );
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "itsyunaya" ];

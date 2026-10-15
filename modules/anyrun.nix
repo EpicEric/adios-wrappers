@@ -66,14 +66,13 @@
     (assertions.disjoint "cssContents" "cssFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) attrNames baseNameOf listToAttrs unsafeDiscardStringContext;
       inherit (inputs.nixpkgs.lib) optionalAttrs;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/anyrun/style.css" =
@@ -111,6 +110,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "itsyunaya" ];

@@ -34,13 +34,12 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       binaryPaths = [ "$out/libexec/xdg-desktop-portal-termfilechooser" ];
       symlinks = {
@@ -57,6 +56,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

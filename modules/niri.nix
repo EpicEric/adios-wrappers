@@ -23,44 +23,45 @@
     };
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
-    if options ? configFiles then
-      let
-        inherit (builtins) concatStringsSep head length;
-        inherit (inputs.nixpkgs.pkgs) writeText;
+    let
+      inherit (builtins) concatStringsSep head length;
+      inherit (inputs.nixpkgs.pkgs) writeText;
 
-        configPath =
-          if length options.configFiles == 1 then
-            head options.configFiles
-          else
-            writeText "config.kdl" (
-              concatStringsSep "\n" (map (file: ''include "${file}"'') options.configFiles)
-            );
-      in
-      inputs.mkWrapper {
-        inherit (options) package;
-        # Hack modified and gotten from https://github.com/Lassulus/wrappers/blob/main/modules/niri/module.nix
-        postWrap = ''
-          cp $out/share/systemd/user/niri.service niri.service
-          chmod +w niri.service
-          cat >> niri.service<<EOF
-          [Service]
-          ExecStart=
-          ExecStart=$out/bin/niri --session
-          ExecReload=$out/bin/niri msg action load-config-file --path ${configPath}
-          X-ReloadIfChanged=true
-          [Unit]
-          X-Reload-Triggers=${configPath}
-          EOF
-          cp --remove-destination niri.service $out/share/systemd/user/niri.service
-        '';
-        environment = {
-          NIRI_CONFIG = configPath;
-        };
-      }
-    else
-      options.package
+      configPath =
+        if length options.configFiles == 1 then
+          head options.configFiles
+        else
+          writeText "config.kdl" (
+            concatStringsSep "\n" (map (file: ''include "${file}"'') options.configFiles)
+          );
+    in {
+      inherit (options) package;
+      # Hack modified and gotten from https://github.com/Lassulus/wrappers/blob/main/modules/niri/module.nix
+      postWrap = ''
+        cp $out/share/systemd/user/niri.service niri.service
+        chmod +w niri.service
+        cat >> niri.service<<EOF
+        [Service]
+        ExecStart=
+        ExecStart=$out/bin/niri --session
+        ExecReload=$out/bin/niri msg action load-config-file --path ${configPath}
+        X-ReloadIfChanged=true
+        [Unit]
+        X-Reload-Triggers=${configPath}
+        EOF
+        cp --remove-destination niri.service $out/share/systemd/user/niri.service
+      '';
+      environment = {
+        NIRI_CONFIG = configPath;
+      };
+    }
+  );
+
+  result = promise (
+    # TODO: use an assertion that guarantees configFiles is set
+    { results, options }: if options ? configFiles then results.mkWrapper else options.package
   );
 
   meta = {

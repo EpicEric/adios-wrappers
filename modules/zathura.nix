@@ -68,7 +68,7 @@
     (assertions.disjoint "sourceFiles" "keybinds")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (builtins) concatStringsSep listToAttrs;
@@ -92,8 +92,7 @@
           optionals (options ? settings) (mapAttrsToList formatLine options.settings)
           ++ optionals (options ? keybinds) (mapAttrsToList formatKeybindLine options.keybinds)
       );
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/zathura/zathurarc" = writeText "zathurarc" assembledConfig;
@@ -112,6 +111,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "bivsk" ];

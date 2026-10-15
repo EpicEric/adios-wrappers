@@ -44,15 +44,14 @@
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.keyValue {
         listsAsDuplicateKeys = true;
       };
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       # Ensure ghostty.service uses the wrapped package.
       # We copy and replace the existing file to avoid permission errors.
@@ -78,6 +77,8 @@
       ];
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "bivsk" ];

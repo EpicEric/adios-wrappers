@@ -34,21 +34,25 @@
     (assertions.disjoint "flags" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     if options ? flags then
-      inputs.mkWrapper {
+      {
         inherit (options) package flags;
       }
-    else if options ? configFile then
-      inputs.mkWrapper {
+    else
+      {
         inherit (options) package;
         environment = {
           BAT_CONFIG_PATH = options.configFile;
         };
       }
-    else
-      options.package
+  );
+
+  result = promise (
+    { results, options }:
+    # TODO: use an assertion that guarantees one of the options is set
+    if options ? flags || options ? configFile then results.mkWrapper else options.package
   );
 
   meta = {

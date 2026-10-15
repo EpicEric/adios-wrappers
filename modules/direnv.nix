@@ -66,23 +66,21 @@
 
   mutations = {
     "/fish".interactiveShellInit = promise (
-      { options, inputs }:
+      { inputs, result }:
       let
         inherit (inputs.nixpkgs.lib) getExe;
-        finalWrapper = options {};
       in
       ''
-        ${getExe finalWrapper} hook fish | source
+        ${getExe result} hook fish | source
       ''
     );
 
     # shell configuration for nushell, uses home managers config since
     # direnv doesnt have a command to generate
     "/nushell".shellInit = promise (
-      { options, inputs }:
+      { options, inputs, result }:
       let
         inherit (inputs.nixpkgs.lib) getExe;
-        finalWrapper = options {};
       in
       ''
         $env.config = ($env.config? | default {})
@@ -91,7 +89,7 @@
             $env.config.hooks.pre_prompt?
             | default []
             | append {||
-                ${getExe finalWrapper} export json
+                ${getExe result} export json
                 | from json --strict
                 | default {}
                 | items {|key, value|
@@ -116,14 +114,13 @@
     );
   };
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats writeText;
       inherit (options) nix-direnv;
       generator = formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/direnv/direnv.toml" =
@@ -149,6 +146,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "Squawkykaka" ];

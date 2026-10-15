@@ -60,7 +60,7 @@
     (assertions.disjoint "autostartContents" "autostartFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText formats;
@@ -81,8 +81,7 @@
           ]
         else
           [];
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/mango/config.conf" =
@@ -103,6 +102,8 @@
       flags = configFlag ++ autostartFlag;
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "Squawkykaka" ];

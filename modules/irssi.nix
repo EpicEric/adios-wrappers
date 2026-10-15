@@ -63,7 +63,7 @@
     (assertions.disjoint "configDir" "config")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
@@ -85,8 +85,7 @@
         "-h"
         options.hostname
       ];
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/irssi/config" = if options ? config then writeText "config" options.config else null;
@@ -95,6 +94,8 @@
       flags = homeFlag ++ configFlag ++ autoconnectFlag ++ nicknameFlag ++ hostnameFlag;
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

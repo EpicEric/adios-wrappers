@@ -71,14 +71,13 @@
     (assertions.disjoint "cssContents" "cssFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.lib) makeSearchPath optionals;
       inherit (inputs.nixpkgs.pkgs) formats makeFontsConf writeText;
       generator = formats.toml {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/config.toml" =
@@ -118,6 +117,8 @@
           null;
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "EpicEric" ];

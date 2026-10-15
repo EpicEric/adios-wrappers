@@ -126,7 +126,7 @@
     (assertions.disjoint "initLuaFile" "initLuaContents")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { inputs, options }:
     let
       inherit (builtins)
@@ -217,8 +217,7 @@
 
           ${userInitLua}
         '';
-    in
-    inputs.mkWrapper {
+    in {
       pname = "neovim";
       binaryName = "nvim";
       package = options.package // {
@@ -239,6 +238,8 @@
       );
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [

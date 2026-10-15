@@ -85,7 +85,7 @@
     }
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.lib) optionals;
@@ -121,12 +121,13 @@
         else
           [];
       flags = dmenuFlags ++ logsFlags ++ configFlag;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       inherit flags;
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

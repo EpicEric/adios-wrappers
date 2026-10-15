@@ -171,13 +171,12 @@
     (assertions.disjoint "functions" "functionsFiles")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) writeText;
       inherit (builtins) listToAttrs attrNames;
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/share/fish/vendor_conf.d/config.fish" =
@@ -224,6 +223,8 @@
       );
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [ "llakala" ];

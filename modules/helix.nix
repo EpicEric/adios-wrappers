@@ -89,7 +89,7 @@
     (assertions.disjoint "languages" "languagesFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
@@ -110,8 +110,7 @@
           )
         else
           {};
-    in
-    inputs.mkWrapper {
+    in {
       inherit (options) package;
       symlinks = {
         "$out/helix/config.toml" =
@@ -143,6 +142,8 @@
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 
   meta = {
     maintainers = [];

@@ -84,13 +84,13 @@ Here's an example module that adds both:
     (assertions.disjoint "settings" "configFile")
   ];
 
-  result = promise (
+  inputs.mkWrapper.options = promise (
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.pkgs) formats;
       generator = formats.toml {};
     in
-    inputs.mkWrapper {
+    {
       symlinks = {
         "$out/foo/foo.toml" =
           if options ? configFile then
@@ -105,6 +105,8 @@ Here's an example module that adds both:
       };
     }
   );
+
+  result = promise ({ results }: results.mkWrapper);
 }
 ```
 
