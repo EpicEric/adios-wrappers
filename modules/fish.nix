@@ -1,4 +1,10 @@
-{ types, promise, assertions, ... } @ adios:
+{
+  types,
+  merge,
+  promise,
+  assertions,
+  ...
+}:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -24,7 +30,7 @@
 
         Disjoint with the `completions` option.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     functions = {
@@ -44,7 +50,7 @@
 
         Disjoint with the `functions` option.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     abbreviations = {
@@ -85,7 +91,7 @@
           }
         ];
       };
-      mergeFunc = adios.lib.merge.attrs.flat;
+      mergeFunc = merge.attrs.flat;
     };
 
     # TODO: add impure variant of this, and make abbreviations work without
