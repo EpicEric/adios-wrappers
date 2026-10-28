@@ -1,4 +1,10 @@
-{ types, promise, assertions, ... } @ adios:
+{
+  types,
+  merge,
+  promise,
+  assertions,
+  ...
+}:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -20,7 +26,7 @@
         default-bg = "#000000";
         default-fg = "#FFFFFF";
       };
-      mergeFunc = adios.lib.merge.attrs.recursively;
+      mergeFunc = merge.attrs.recursively;
     };
     keybinds = {
       type = types.attrs;
@@ -40,7 +46,7 @@
         "<Right>" = "navigate next";
         "[fullscreen] <C-i>" = "zoom in";
       };
-      mergeFunc = adios.lib.merge.attrs.recursively;
+      mergeFunc = merge.attrs.recursively;
     };
     sourceFiles = {
       type = types.listOf types.pathLike;
@@ -53,7 +59,7 @@
 
         Disjoint with `settings` and `keybinds` options.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     package = {

@@ -1,4 +1,4 @@
-{ types, promise, ... } @ adios:
+{ types, promise, merge, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -13,7 +13,7 @@
 
         See the niri [documentation](https://github.com/niri-wm/niri/wiki/Configuration:-Introduction) for syntax and valid options.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     package = {

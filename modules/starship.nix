@@ -1,4 +1,10 @@
-{ types, promise, assertions, ... } @ adios:
+{
+  types,
+  merge,
+  promise,
+  assertions,
+  ...
+}:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -41,7 +47,6 @@
         let
           inherit (inputs.nixpkgs.lib) recursiveUpdate;
           inherit (inputs.nixpkgs.pkgs) formats;
-          inherit (adios.lib) merge;
           generator = formats.toml {};
           default = {
             inherit (options) package;

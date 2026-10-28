@@ -1,4 +1,4 @@
-{ types, promise, ... } @ adios:
+{ types, merge, promise, ... }:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -39,14 +39,14 @@
       description = ''
         zsh files to be sourced after the `zshrc` option in the wrapped package's `.zshrc` file.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
     extraZshrcFiles = {
       type = types.listOf types.pathLike;
       description = ''
         zsh files to be sourced at the end of the wrapped package's `.zshrc` file.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     settings = {
@@ -62,7 +62,7 @@
         autocd = false;
         beep = false;
       };
-      mergeFunc = adios.lib.merge.attrs.recursively;
+      mergeFunc = merge.attrs.recursively;
     };
 
     variables = {
@@ -74,7 +74,7 @@
         HISTFILE = "~/.histfile";
         HISTSIZE = 5000;
       };
-      mergeFunc = adios.lib.merge.attrs.recursively;
+      mergeFunc = merge.attrs.recursively;
     };
 
     aliases = {
@@ -100,7 +100,7 @@
           command = "| grep";
         };
       };
-      mergeFunc = adios.lib.merge.attrs.recursively;
+      mergeFunc = merge.attrs.recursively;
     };
 
     plugins = {
@@ -130,7 +130,7 @@
           }
         ];
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     extraPackages = {
@@ -138,7 +138,7 @@
       description = ''
         Runtime dependencies to be injected into the wrapped package's path.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     package = {

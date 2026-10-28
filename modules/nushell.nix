@@ -1,4 +1,10 @@
-{ types, promise, assertions, ... } @ adios:
+{
+  types,
+  merge,
+  promise,
+  assertions,
+  ...
+}:
 {
   inputs = {
     mkWrapper.from = { parent }: parent.mkWrapper;
@@ -13,7 +19,7 @@
 
         See the nushell [documentation](https://www.nushell.sh/book/configuration.html) for valid options.
       '';
-      mergeFunc = adios.lib.merge.strings.concatLines;
+      mergeFunc = merge.strings.concatLines;
     };
     sourceFiles = {
       type = types.listOf types.pathLike;
@@ -21,7 +27,7 @@
         A list of paths to source in the `config.nu` file.
         This can be used to import extra files, and can be used with impurity
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     extraPackages = {
@@ -29,7 +35,7 @@
       description = ''
         Runtime dependencies to be injected into the wrapped package's path.
       '';
-      mergeFunc = adios.lib.merge.lists.concat;
+      mergeFunc = merge.lists.concat;
     };
 
     package = {
